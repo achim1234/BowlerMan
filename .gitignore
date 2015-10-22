@@ -1,10 +1,10 @@
 # =============== #
 # Unity generated #
 # =============== #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
+Unity/*/[Ll]ibrary/
+Unity/*/[Tt]emp/
+Unity/*/[Oo]bj/
+Unity/*/[Bb]uild/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
