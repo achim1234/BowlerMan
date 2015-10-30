@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private int count;
 
+    private Vector3 lastPosition;
+    private float plyayerSpeed = 0;
+
+
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,8 +34,19 @@ public class PlayerController : MonoBehaviour {
     // is ran before performing any physics calculation
     void FixedUpdate()
     {
+        // get player input
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
+        // calculate current speed of player
+        plyayerSpeed = (transform.position - lastPosition).magnitude / Time.deltaTime;
+        lastPosition = transform.position;
+
+        // if player is to slow, speed up
+        if (plyayerSpeed < 7)
+        {
+            moveVertical = 15;
+        }
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
