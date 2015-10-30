@@ -45,9 +45,10 @@ public class PlayerController : MonoBehaviour {
         plyayerSpeed = (transform.position - lastPosition).magnitude / Time.deltaTime;
         lastPosition = transform.position;
 
-        // if player is to slow, speed up
+        // is player allowed to stop / be really slowly
         if (noPlayerStop)
         {
+            // if player is to slow, speed up
             if (plyayerSpeed < 7)
             {
                 moveVertical = 15;
