@@ -6,6 +6,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     public float speed;
+    public bool noPlayerStop; // if player is too slow, there is a speeding up
+
+    // UI elements
     public Text countText;
     public Text winText;
 
@@ -43,10 +46,14 @@ public class PlayerController : MonoBehaviour {
         lastPosition = transform.position;
 
         // if player is to slow, speed up
-        if (plyayerSpeed < 7)
+        if (noPlayerStop)
         {
-            moveVertical = 15;
+            if (plyayerSpeed < 7)
+            {
+                moveVertical = 15;
+            }
         }
+
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
