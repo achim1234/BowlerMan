@@ -1542,6 +1542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  noPlayerStop: 1
   countText: {fileID: 0}
   winText: {fileID: 0}
 --- !u!23 &1620082908
