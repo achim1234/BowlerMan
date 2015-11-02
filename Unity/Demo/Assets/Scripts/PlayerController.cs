@@ -5,24 +5,24 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    // player settings
+	// player settings
 	private Rigidbody rb;
-	
+
 	public int health = 100;
 
-    private Vector3 lastPosition; // last position of player - needed to calculate speed of player
-    private float plyayerSpeed = 0; // speed of player - at start 0	
-	
-	public bool noPlayerStop; // if player is too slow, there is a speeding up
-	
-	public float speedMultiplier; // multiplier to adjust speed of player
-    
-    private int count; // counter - how much pick ups were picked
+	private Vector3 lastPosition; // last position of player - needed to calculate speed of player
+	private float plyayerSpeed = 0; // speed of player - at start 0
 
-	
-    // UI elements
-    public Text countText;
-    public Text winText;
+	public bool noPlayerStop; // if player is too slow, there is a speeding up
+
+	public float speedMultiplier; // multiplier to adjust speed of player
+
+	private int count; // counter - how much pick ups were picked
+
+
+	// UI elements
+	public Text countText;
+	public Text winText;
 
 
 
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 	// Update is called once per frame
-    // is run before rendering a frame
+	// is run before rendering a frame
 	void Update ()
     {
 
