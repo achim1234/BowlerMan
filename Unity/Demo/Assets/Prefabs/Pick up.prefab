@@ -11,7 +11,6 @@ GameObject:
   - 33: {fileID: 3313312}
   - 65: {fileID: 6517162}
   - 23: {fileID: 2327978}
-  - 114: {fileID: 11440354}
   - 114: {fileID: 11430946}
   - 54: {fileID: 5484026}
   m_Layer: 0
@@ -43,7 +42,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 96347407c458752488cb3ae45a2c22fa, type: 2}
+  - {fileID: 2100000, guid: 919e4e5e83e6ca94c803d98a73437153, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -99,18 +98,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 107190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3df443b8e8cc7c448c496c6b08eef47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11440354
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: ddf2f48d3a8ee5b46a8152fd46594226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000
@@ -123,7 +111,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 96347407c458752488cb3ae45a2c22fa, type: 2}
+      objectReference: {fileID: 2100000, guid: 919e4e5e83e6ca94c803d98a73437153, type: 2}
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Pick Up
