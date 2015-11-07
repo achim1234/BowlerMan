@@ -70,13 +70,31 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)// wird ausgefuehrt, wenn der Spieler mit einem anderen TriggerCollider kollidiert
     {
-        if(other.gameObject.CompareTag("PickUp"))
-        {
-            other.gameObject.SetActive(false);
-            count = count + 1;
-            SetCountText();
-        }
+        // get tag of pick / power up
+        string tag = other.gameObject.tag;
 
+        switch (tag)
+        {
+            case "PickUp": // player getes points
+                other.gameObject.SetActive(false);
+                count = count + 1;
+                SetCountText();
+                break;
+            case "PowerUp-GrosseKugel": // increase size of player
+                this.transform.localScale += new Vector3(1, 1, 1);
+                break;
+            case "PowerUp-KleineKugel": // increase size of player
+                Vector3 currentSize = this.transform.localScale;
+                if ((currentSize.x>=0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
+                {
+                    this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+                }
+                break;
+            default:
+                break;
+        }
+        // disable pick / power up
+        other.gameObject.SetActive(false);
     }
 
     void SetCountText()
