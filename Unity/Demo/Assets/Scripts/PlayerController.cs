@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)// wird ausgefuehrt, wenn der Spieler mit einem anderen TriggerCollider kollidiert
     {
-        if(other.gameObject.CompareTag("Pick Up"))
+        if(other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
             count = count + 1;
@@ -82,9 +82,11 @@ public class PlayerController : MonoBehaviour {
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if(count >= 13)
+        /*
+		if(count >= 13)
         {
             winText.text = "You Win!";
         }
+		*/
     }
 }
