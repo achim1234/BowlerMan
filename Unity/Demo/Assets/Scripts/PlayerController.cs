@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
 	private float plyayerSpeed = 0; // speed of player - at start 0
 
 	public bool noPlayerStop; // if player is too slow, there is a speeding up
+	
+	public bool invertControl = false;
 
 	public float speedMultiplier; // multiplier to adjust speed of player
 
@@ -58,13 +60,30 @@ public class PlayerController : MonoBehaviour {
             // if player is to slow, speed up
             if (plyayerSpeed < 7)
             {
-                moveVertical = 15;
+                if (invertControl == true)
+                {
+                    moveVertical = -15;
+                }
+                else
+                {
+                    moveVertical = 15;
+                }
             }
         }
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        
+        if (invertControl == true)
+		{
+            Vector3 movement = new Vector3(moveHorizontal * -1, 0.0f, moveVertical * -1);
+            rb.AddForce(movement * speedMultiplier);
+        }
+        else
+        {
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            rb.AddForce(movement * speedMultiplier);
+        }        
 
-        rb.AddForce(movement * speedMultiplier);
+
     }
 
 
@@ -72,6 +91,9 @@ public class PlayerController : MonoBehaviour {
     {
         // get tag of pick / power up
         string tag = other.gameObject.tag;
+
+        // get current size of player
+        Vector3 currentSize = this.transform.localScale;
 
         switch (tag)
         {
@@ -81,15 +103,28 @@ public class PlayerController : MonoBehaviour {
                 SetCountText();
                 break;
             case "PowerUp-GrosseKugel": // increase size of player
-                this.transform.localScale += new Vector3(1, 1, 1);
+				if ((currentSize.x <= 3f) && (currentSize.y <= 3f) && (currentSize.z <= 3f)) // has player already reached max size
+                {
+                    this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+                }
+				this.transform.localScale += new Vector3(1, 1, 1);
                 break;
-            case "PowerUp-KleineKugel": // increase size of player
-                Vector3 currentSize = this.transform.localScale;
-                if ((currentSize.x>=0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
+            case "PowerUp-KleineKugel": // decrease size of player
+                if ((currentSize.x >= 0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
                 {
                     this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
                 }
                 break;
+            case "PowerUp-InvertControl": // invert control
+				if(invertControl)
+				{
+                    invertControl = false;
+				}
+				else
+				{
+                    invertControl = true;	
+				}
+                break;				
             default:
                 break;
         }
