@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - PowerUp-GrosseKugel
+  - PickUp
+  - PowerUp-KleineKugel
+  - PowerUp-InvertControl
   layers:
   - Default
   - TransparentFX
