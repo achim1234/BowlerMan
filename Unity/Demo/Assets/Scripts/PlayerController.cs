@@ -104,11 +104,11 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "PowerUp-GrosseKugel": // increase size of player
 				if ((currentSize.x <= 3f) && (currentSize.y <= 3f) && (currentSize.z <= 3f)) // has player already reached max size
-                {
-                    this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
-                }
+				{
+					this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+				}
 				this.transform.localScale += new Vector3(1, 1, 1);
-                break;
+				break;
             case "PowerUp-KleineKugel": // decrease size of player
                 if ((currentSize.x >= 0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
                 {
@@ -118,13 +118,13 @@ public class PlayerController : MonoBehaviour {
             case "PowerUp-InvertControl": // invert control
 				if(invertControl)
 				{
-                    invertControl = false;
+					invertControl = false; // control is no longer inverted
 				}
 				else
 				{
-                    invertControl = true;	
+					invertControl = true; // control is is from now on inverted
 				}
-                break;				
+                break;
             default:
                 break;
         }
@@ -135,11 +135,11 @@ public class PlayerController : MonoBehaviour {
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        /*
+		/*
 		if(count >= 13)
-        {
-            winText.text = "You Win!";
-        }
+		{
+			winText.text = "You Win!";
+		}
 		*/
     }
 }
