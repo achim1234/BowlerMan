@@ -128,6 +128,9 @@ public class PlayerController : MonoBehaviour {
             case "PowerUp-SpeedUp": // speed up player
                 speedMultiplier += 10;
                 break;
+            case "PowerUp-AddMass": // increase mass of player
+                rb.mass += 0.145f;
+                break;
             default:
                 break;
         }

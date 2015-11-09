@@ -9,6 +9,7 @@ TagManager:
   - PowerUp-KleineKugel
   - PowerUp-InvertControl
   - PowerUp-SpeedUp
+  - PowerUp-AddMass
   layers:
   - Default
   - TransparentFX
