@@ -125,6 +125,9 @@ public class PlayerController : MonoBehaviour {
 	                invertControl = true; // control is is from now on inverted
                 }
                 break;
+            case "PowerUp-SpeedUp": // speed up player
+                speedMultiplier += 10;
+                break;
             default:
                 break;
         }

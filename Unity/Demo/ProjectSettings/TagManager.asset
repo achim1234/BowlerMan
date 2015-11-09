@@ -8,6 +8,7 @@ TagManager:
   - PickUp
   - PowerUp-KleineKugel
   - PowerUp-InvertControl
+  - PowerUp-SpeedUp
   layers:
   - Default
   - TransparentFX
