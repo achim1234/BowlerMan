@@ -20,7 +20,7 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 2a1fb1932e6a7a74cb6b794e18e37b74, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Scale: {x: 1, y: .239999995}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -55,7 +55,7 @@ Material:
           name: _EmissionMap
         second:
           m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Scale: {x: 1, y: .239999995}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -74,6 +74,13 @@ Material:
       data:
         first:
           name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -102,7 +109,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: .340000004
       data:
         first:
           name: _BumpScale
@@ -136,3 +143,7 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
