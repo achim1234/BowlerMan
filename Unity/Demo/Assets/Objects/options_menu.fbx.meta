@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: de243822d022cc548922b158c7ecae1b
+timeCreated: 1446656613
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: 1
+    100002: Cap_1
+    100004: Cap_1_2
+    100006: Cap_1_3
+    100008: Cap_1_4
+    100010: Cap_1_5
+    100012: Cap_1_6
+    100014: Cap_1_7
+    100016: Cap_2
+    100018: Cap_2_2
+    100020: Cap_2_3
+    100022: Cap_2_4
+    100024: Cap_2_5
+    100026: Cap_2_6
+    100028: Cap_2_7
+    100030: CINEMA_4D_Editor
+    100032: i
+    100034: MoText
+    100036: n
+    100038: O
+    100040: o
+    100042: Options
+    100044: //RootNode
+    100046: p
+    100048: s
+    100050: t
+    100052: Text
+    400000: 1
+    400002: Cap_1
+    400004: Cap_1_2
+    400006: Cap_1_3
+    400008: Cap_1_4
+    400010: Cap_1_5
+    400012: Cap_1_6
+    400014: Cap_1_7
+    400016: Cap_2
+    400018: Cap_2_2
+    400020: Cap_2_3
+    400022: Cap_2_4
+    400024: Cap_2_5
+    400026: Cap_2_6
+    400028: Cap_2_7
+    400030: CINEMA_4D_Editor
+    400032: i
+    400034: MoText
+    400036: n
+    400038: O
+    400040: o
+    400042: Options
+    400044: //RootNode
+    400046: p
+    400048: s
+    400050: t
+    400052: Text
+    2300000: Cap_1
+    2300002: Cap_1_2
+    2300004: Cap_1_3
+    2300006: Cap_1_4
+    2300008: Cap_1_5
+    2300010: Cap_1_6
+    2300012: Cap_1_7
+    2300014: Cap_2
+    2300016: Cap_2_2
+    2300018: Cap_2_3
+    2300020: Cap_2_4
+    2300022: Cap_2_5
+    2300024: Cap_2_6
+    2300026: Cap_2_7
+    2300028: i
+    2300030: n
+    2300032: O
+    2300034: o
+    2300036: p
+    2300038: s
+    2300040: t
+    3300000: Cap_1
+    3300002: Cap_1_2
+    3300004: Cap_1_3
+    3300006: Cap_1_4
+    3300008: Cap_1_5
+    3300010: Cap_1_6
+    3300012: Cap_1_7
+    3300014: Cap_2
+    3300016: Cap_2_2
+    3300018: Cap_2_3
+    3300020: Cap_2_4
+    3300022: Cap_2_5
+    3300024: Cap_2_6
+    3300026: Cap_2_7
+    3300028: i
+    3300030: n
+    3300032: O
+    3300034: o
+    3300036: p
+    3300038: s
+    3300040: t
+    4300000: O
+    4300002: Cap_1
+    4300004: Cap_2
+    4300006: p
+    4300008: Cap_1_2
+    4300010: Cap_2_2
+    4300012: t
+    4300014: Cap_1_3
+    4300016: Cap_2_3
+    4300018: i
+    4300020: Cap_1_4
+    4300022: Cap_2_4
+    4300024: o
+    4300026: Cap_1_5
+    4300028: Cap_2_5
+    4300030: n
+    4300032: Cap_1_6
+    4300034: Cap_2_6
+    4300036: s
+    4300038: Cap_1_7
+    4300040: Cap_2_7
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
