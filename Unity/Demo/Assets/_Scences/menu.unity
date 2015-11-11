@@ -1394,7 +1394,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: de243822d022cc548922b158c7ecae1b, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100044, guid: de243822d022cc548922b158c7ecae1b, type: 3}
       propertyPath: m_Name
@@ -10176,8 +10176,8 @@ Transform:
   - {fileID: 331744839}
   - {fileID: 1838697307}
   - {fileID: 1735256024}
-  - {fileID: 683387089}
   - {fileID: 1216776666}
+  - {fileID: 683387089}
   m_Father: {fileID: 559158488}
   m_RootOrder: 19
 --- !u!1 &676659095
@@ -17897,7 +17897,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 675757595}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!23 &1216776667
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18219,6 +18219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee54a31c21001b4eb2878329eaae657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  z_value: 0
   rotationleft: 360
   rotationspeed: 10
   rotation: 0
