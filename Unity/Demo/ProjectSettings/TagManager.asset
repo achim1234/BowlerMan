@@ -10,6 +10,9 @@ TagManager:
   - PowerUp-InvertControl
   - PowerUp-SpeedUp
   - PowerUp-AddMass
+  - Pick Up
+  - PowerUp-PlayerJump
+  - CubeObstacle
   layers:
   - Default
   - TransparentFX

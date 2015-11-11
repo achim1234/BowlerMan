@@ -17,14 +17,29 @@ public class PlayerController : MonoBehaviour {
 	
     public bool invertControl = false;
 
+    // power up player jump
+    public bool playerJump = false;
+    public bool isFalling = false;
+    public float jumpForce = 10.0f;
+
     public float speedMultiplier; // multiplier to adjust speed of player
 
     private int count; // counter - how much pick ups were picked
 
+    // lebenspunkte kugel abziehen
+    public float healthPoints = 10000.0f;
+
+
+    // timer
+    float timer = 0.0f;
+    float timerMax = 30.0f;
+
+    bool isGameOver = false;
 
     // UI elements
     public Text countText;
     public Text winText;
+    public Text timerUI;
 
 
 
@@ -33,6 +48,9 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
+
+        timer = timerMax;
+
         winText.text = "";
     }
 
@@ -40,102 +58,160 @@ public class PlayerController : MonoBehaviour {
     // is run before rendering a frame
     void Update ()
     {
+        if (!isGameOver)
+        {
+            timer -= Time.deltaTime;
 
+            setUITimer();
+
+            if (timer < 0) // no more time left -> game over
+            {
+                Debug.Log("timer Zero reached !");
+
+                timer = 0;
+
+                setUITimeIsUpText();
+                setUITimer();
+                isGameOver = true;
+            }
+        }
     }
 
     // is ran before performing any physics calculation
     void FixedUpdate()
     {
-        // get player input
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        // calculate current speed of player
-        plyayerSpeed = (transform.position - lastPosition).magnitude / Time.deltaTime;
-        lastPosition = transform.position;
-
-        // is player allowed to stop / be really slowly
-        if (noPlayerStop)
+        if (!isGameOver)
         {
-            // if player is to slow, speed up
-            if (plyayerSpeed < 7)
+            Debug.Log(healthPoints);
+            // get player input
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+
+            // calculate current speed of player
+            plyayerSpeed = (transform.position - lastPosition).magnitude / Time.deltaTime;
+            lastPosition = transform.position;
+
+            // is player allowed to stop / be really slowly
+            if (noPlayerStop)
             {
-                if (invertControl == true)
+                // if player is to slow, speed up
+                if (plyayerSpeed < 7)
                 {
-                    moveVertical = -15;
-                }
-                else
-                {
-                    moveVertical = 15;
+                    if (invertControl == true)
+                    {
+                        moveVertical = -15;
+                    }
+                    else
+                    {
+                        moveVertical = 15;
+                    }
                 }
             }
-        }
 
-        
-        if (invertControl == true)
-		{
-            Vector3 movement = new Vector3(moveHorizontal * -1, 0.0f, moveVertical * -1);
-            rb.AddForce(movement * speedMultiplier);
-        }
-        else
+
+            if (invertControl == true)
+            {
+                Vector3 movement = new Vector3(moveHorizontal * -1, 0.0f, moveVertical * -1);
+                rb.AddForce(movement * speedMultiplier);
+            }
+            else
+            {
+                Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+                rb.AddForce(movement * speedMultiplier);
+            }
+
+            // jump
+            if (playerJump == true)
+            {
+                if (Input.GetKey(KeyCode.Space) && isFalling == false)
+                {
+                    isFalling = true;
+                    rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                }
+            }
+        }      
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!isGameOver)
         {
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-            rb.AddForce(movement * speedMultiplier);
-        }        
+            // Debug.Log("collided with: " + collision.gameObject.name);
+            isFalling = false;
 
+            //collision.gameObject.GetComponent<Cube>();
+
+            if (healthPoints > 0 && collision.gameObject.tag == "CubeObstacle")
+            {
+                healthPoints = healthPoints - plyayerSpeed;
+                Debug.Log(healthPoints);
+
+            }
+            else if (healthPoints < 0.0f) // no more health -> game over
+            {
+                Debug.Log("Game Over! Keine Lebenspunkte mehr!");
+            }
+        }
 
     }
 
 
+
     void OnTriggerEnter(Collider other)// wird ausgefuehrt, wenn der Spieler mit einem anderen TriggerCollider kollidiert
     {
-        // get tag of pick / power up
-        string tag = other.gameObject.tag;
-
-        // get current size of player
-        Vector3 currentSize = this.transform.localScale;
-
-        switch (tag)
+        if (!isGameOver)
         {
-            case "PickUp": // player getes points
-                other.gameObject.SetActive(false);
-                count = count + 1;
-                SetCountText();
-                break;
-            case "PowerUp-GrosseKugel": // increase size of player
-                if ((currentSize.x <= 3f) && (currentSize.y <= 3f) && (currentSize.z <= 3f)) // has player already reached max size
-                {
-	                this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
-                }
-                this.transform.localScale += new Vector3(1, 1, 1);
-                break;
-            case "PowerUp-KleineKugel": // decrease size of player
-                if ((currentSize.x >= 0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
-                {
-                    this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
-                }
-                break;
-            case "PowerUp-InvertControl": // invert control
-                if(invertControl)
-                {
-	                invertControl = false; // control is no longer inverted
-                }
-                else
-                {
-	                invertControl = true; // control is is from now on inverted
-                }
-                break;
-            case "PowerUp-SpeedUp": // speed up player
-                speedMultiplier += 10;
-                break;
-            case "PowerUp-AddMass": // increase mass of player
-                rb.mass += 0.145f;
-                break;
-            default:
-                break;
+            // get tag of pick / power up
+            string tag = other.gameObject.tag;
+
+            // get current size of player
+            Vector3 currentSize = this.transform.localScale;
+
+            switch (tag)
+            {
+                case "PickUp": // player getes points
+                    other.gameObject.SetActive(false);
+                    count = count + 1;
+                    SetCountText();
+                    break;
+                case "PowerUp-GrosseKugel": // increase size of player
+                    if ((currentSize.x <= 3f) && (currentSize.y <= 3f) && (currentSize.z <= 3f)) // has player already reached max size
+                    {
+                        this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+                    }
+                    this.transform.localScale += new Vector3(1, 1, 1);
+                    break;
+                case "PowerUp-KleineKugel": // decrease size of player
+                    if ((currentSize.x >= 0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
+                    {
+                        this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+                    }
+                    break;
+                case "PowerUp-InvertControl": // invert control
+                    if (invertControl)
+                    {
+                        invertControl = false; // control is no longer inverted
+                    }
+                    else
+                    {
+                        invertControl = true; // control is is from now on inverted
+                    }
+                    break;
+                case "PowerUp-SpeedUp": // speed up player
+                    speedMultiplier += 10;
+                    break;
+                case "PowerUp-AddMass": // increase mass of player
+                    rb.mass += 0.145f;
+                    break;
+                case "PowerUp-PlayerJump": //player jump
+                    playerJump = true;
+                    break;
+                default:
+                    break;
+            }
+            // disable pick / power up
+            other.gameObject.SetActive(false);
         }
-        // disable pick / power up
-        other.gameObject.SetActive(false);
     }
 
     void SetCountText()
@@ -147,5 +223,22 @@ public class PlayerController : MonoBehaviour {
 	        winText.text = "You Win!";
         }
         */
+    }
+
+    void setUITimer()
+    {
+        timerUI.text = "Time: " + timer.ToString("0.00");
+    }
+
+    void setUITimeIsUpText()
+    {
+        string text = "Game over! \n\n Points: " + count.ToString();
+        winText.text = text;
+    }
+
+    void setUILevelWinText()
+    {
+        string text = "Good job! \n\n Points: " + (count * timer).ToString();
+        winText.text = text;
     }
 }
