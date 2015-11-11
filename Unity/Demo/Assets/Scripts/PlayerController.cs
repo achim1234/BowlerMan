@@ -150,6 +150,9 @@ public class PlayerController : MonoBehaviour {
             else if (healthPoints < 0.0f) // no more health -> game over
             {
                 Debug.Log("Game Over! Keine Lebenspunkte mehr!");
+
+                setUINoMoreHealthText();
+                isGameOver = true;
             }
         }
 
@@ -231,6 +234,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     void setUITimeIsUpText()
+    {
+        string text = "Game over! \n\n Points: " + count.ToString();
+        winText.text = text;
+    }
+
+    void setUINoMoreHealthText()
     {
         string text = "Game over! \n\n Points: " + count.ToString();
         winText.text = text;
