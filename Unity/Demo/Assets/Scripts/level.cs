@@ -12,6 +12,6 @@ public class level : MonoBehaviour {
 
     void OnMouseUp()
     {
-        Application.LoadLevel("demo");
+        Application.LoadLevel("achims_level");
     } 
 }

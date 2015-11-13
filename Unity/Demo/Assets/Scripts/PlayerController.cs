@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     // player settings
     private Rigidbody rb;
 
-    public int health = 100;
+    
 
     private Vector3 lastPosition; // last position of player - needed to calculate speed of player
     private float plyayerSpeed = 0; // speed of player - at start 0
@@ -26,20 +26,21 @@ public class PlayerController : MonoBehaviour {
 
     private int count; // counter - how much pick ups were picked
 
-    // lebenspunkte kugel abziehen
+    // Lebenspunkte kugel
     public float healthPoints = 10000.0f;
 
 
     // timer
     float timer = 0.0f;
-    float timerMax = 30.0f;
+    float timerMax = 45.0f;
 
     bool isGameOver = false;
 
     // UI elements
-    public Text countText;
-    public Text winText;
-    public Text timerUI;
+    public Text countUIText;
+    public Text winUIText;
+    public Text timerUIText;
+    public Text healthUIText;
 
 
 
@@ -48,10 +49,11 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
+        setUIHealth();
 
         timer = timerMax;
 
-        winText.text = "";
+        winUIText.text = "";
     }
 
     // Update is called once per frame
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 
                 timer = 0;
 
-                setUITimeIsUpText();
+                setUIGameOver();
                 setUITimer();
                 isGameOver = true;
             }
@@ -144,15 +146,33 @@ public class PlayerController : MonoBehaviour {
             if (healthPoints > 0 && collision.gameObject.tag == "CubeObstacle")
             {
                 healthPoints = healthPoints - plyayerSpeed;
+                setUIHealth();
                 Debug.Log(healthPoints);
 
             }
             else if (healthPoints < 0.0f) // no more health -> game over
             {
                 Debug.Log("Game Over! Keine Lebenspunkte mehr!");
-
-                setUINoMoreHealthText();
+                healthPoints = 0;
+                setUIHealth();
+                setUIGameOver();
                 isGameOver = true;
+            }
+
+            // get tag of pick / power up
+            string name = collision.gameObject.name;
+            switch (name)
+            {
+                case "BowlingPin-EndLevel":
+                    count = count + 50; // points for finisihing level
+                    count = (int)count * (int)timer; // bonus points for left time
+                    SetCountText();
+                    finishedLevel();
+                    break;
+                default:
+                    break;
+
+
             }
         }
 
@@ -172,9 +192,18 @@ public class PlayerController : MonoBehaviour {
 
             switch (tag)
             {
+                case "BowlingPin": // player getes points
+                    count = count + 10;
+                    SetCountText();
+                    break;
+                case "BowlingPin-EndLevel": // player finished level
+                    count = count + 10;
+                    SetCountText();
+                    finishedLevel();
+                    break;
                 case "PickUp": // player getes points
                     other.gameObject.SetActive(false);
-                    count = count + 1;
+                    count = count + 10;
                     SetCountText();
                     break;
                 case "PowerUp-GrosseKugel": // increase size of player
@@ -183,12 +212,16 @@ public class PlayerController : MonoBehaviour {
                         this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
                     }
                     this.transform.localScale += new Vector3(1, 1, 1);
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-KleineKugel": // decrease size of player
                     if ((currentSize.x >= 0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
                     {
                         this.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
                     }
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-InvertControl": // invert control
                     if (invertControl)
@@ -199,27 +232,36 @@ public class PlayerController : MonoBehaviour {
                     {
                         invertControl = true; // control is is from now on inverted
                     }
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-SpeedUp": // speed up player
                     speedMultiplier += 10;
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-AddMass": // increase mass of player
                     rb.mass += 0.145f;
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-PlayerJump": //player jump
                     playerJump = true;
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
+                    break;
+                case "Water": // player hits water
+                    setUIGameOver();
                     break;
                 default:
                     break;
             }
-            // disable pick / power up
-            other.gameObject.SetActive(false);
         }
     }
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        countUIText.text = "Count: " + count.ToString();
         /*
         if(count >= 13)
         {
@@ -228,26 +270,41 @@ public class PlayerController : MonoBehaviour {
         */
     }
 
+
+    void finishedLevel()
+    {
+        isGameOver = true;
+        setUILevelWinText();
+    }
+
+    void lostLevel()
+    {
+        isGameOver = true;
+        setUIGameOver();
+    }
+
     void setUITimer()
     {
-        timerUI.text = "Time: " + timer.ToString("0.00");
+        timerUIText.text = "Time: " + timer.ToString("0.00");
     }
 
-    void setUITimeIsUpText()
+    void setUIHealth()
     {
-        string text = "Game over! \n\n Points: " + count.ToString();
-        winText.text = text;
+        int health = (int)((healthPoints / 10000) * 100);
+        healthUIText.text = "Health: " + healthPoints.ToString("0");
     }
 
-    void setUINoMoreHealthText()
+    void setUIGameOver()
     {
         string text = "Game over! \n\n Points: " + count.ToString();
-        winText.text = text;
+        winUIText.text = text;
     }
+
+
 
     void setUILevelWinText()
     {
-        string text = "Good job! \n\n Points: " + (count * timer).ToString();
-        winText.text = text;
+        string text = "Good job! \n\n Points: " + count.ToString("0.00");
+        winUIText.text = text;
     }
 }

@@ -13,6 +13,9 @@ TagManager:
   - Pick Up
   - PowerUp-PlayerJump
   - CubeObstacle
+  - Water
+  - BowlingPin
+  - BowlingPin-EndLevel
   layers:
   - Default
   - TransparentFX
