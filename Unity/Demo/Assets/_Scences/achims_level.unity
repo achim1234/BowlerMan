@@ -66,7 +66,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightmapSnapshot: {fileID: 112000001, guid: b2c457685ceb5544ebbcfdcf08e53dae,
+  m_LightmapSnapshot: {fileID: 112000001, guid: 71cfaba5fe78cf744816d80b291f7666,
     type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
