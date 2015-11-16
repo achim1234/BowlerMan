@@ -3816,7 +3816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4399f91c670344fa8b2ba65655d4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   noPlayerStop: 0
   invertControl: 0
   playerJump: 0
@@ -3824,9 +3823,10 @@ MonoBehaviour:
   jumpForce: 10
   speedMultiplier: 8
   healthPoints: 10000
-  countText: {fileID: 1942400793}
-  winText: {fileID: 1333859400}
-  timerUI: {fileID: 1524769183}
+  countUIText: {fileID: 0}
+  winUIText: {fileID: 0}
+  timerUIText: {fileID: 0}
+  healthUIText: {fileID: 0}
 --- !u!23 &1620082908
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3837,7 +3837,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f5d8748c107c80647aaf0febce237eb3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -3876,7 +3876,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1620082906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -.67197299, z: 0, w: .740575671}
   m_LocalPosition: {x: 0, y: 248.600006, z: -165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
