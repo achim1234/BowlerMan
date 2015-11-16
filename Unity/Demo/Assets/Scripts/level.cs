@@ -12,6 +12,6 @@ public class level : MonoBehaviour {
 
     void OnMouseUp()
     {
-        Application.LoadLevel("achims_level");
+        Application.LoadLevel("obstacles");
     } 
 }
