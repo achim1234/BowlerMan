@@ -71,10 +71,17 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log("timer Zero reached !");
 
                 timer = 0;
-
-                setUIGameOver();
                 setUITimer();
-                isGameOver = true;
+				
+				setGameOver();
+            }
+        }
+        else // game is over
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+				Debug.Log("load level menu");
+				Application.LoadLevel("menu");                
             }
         }
     }
@@ -84,7 +91,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (!isGameOver)
         {
-            Debug.Log(healthPoints);
+            //Debug.Log(healthPoints);
             // get player input
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
@@ -147,7 +154,7 @@ public class PlayerController : MonoBehaviour {
             {
                 healthPoints = healthPoints - plyayerSpeed;
                 setUIHealth();
-                Debug.Log(healthPoints);
+               // Debug.Log(healthPoints);
 
             }
             else if (healthPoints < 0.0f) // no more health -> game over
@@ -155,8 +162,7 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log("Game Over! Keine Lebenspunkte mehr!");
                 healthPoints = 0;
                 setUIHealth();
-                setUIGameOver();
-                isGameOver = true;
+                setGameOver();
             }
 
             // get tag of pick / power up
@@ -251,7 +257,7 @@ public class PlayerController : MonoBehaviour {
                     other.gameObject.SetActive(false);
                     break;
                 case "Water": // player hits water
-                    setUIGameOver();
+                    setGameOver();
                     break;
                 default:
                     break;
@@ -271,38 +277,38 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    void finishedLevel()
+    void finishedLevel() // level won
     {
         isGameOver = true;
         setUILevelWinText();
     }
-
-    void lostLevel()
-    {
+	
+	void setGameOver() // level / game lost
+	{
         isGameOver = true;
-        setUIGameOver();
-    }
+		setUIGameOver();
+	}
 
-    void setUITimer()
+
+    void setUITimer() // UI time
     {
         timerUIText.text = "Time: " + timer.ToString("0.00");
     }
 
-    void setUIHealth()
+    void setUIHealth() // UI health
     {
-        int health = (int)((healthPoints / 10000) * 100);
-        healthUIText.text = "Health: " + healthPoints.ToString("0");
+        int health = (int)((healthPoints / 50) * 100);
+        healthUIText.text = "Health: " + health.ToString("0");
     }
 
-    void setUIGameOver()
+    void setUIGameOver() // UI - shows text if game is over
     {
         string text = "Game over! \n\n Points: " + count.ToString();
         winUIText.text = text;
     }
 
 
-
-    void setUILevelWinText()
+    void setUILevelWinText() // UI - shows text if game is over
     {
         string text = "Good job! \n\n Points: " + count.ToString("0.00");
         winUIText.text = text;
