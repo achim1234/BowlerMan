@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour {
 
     public AudioClip woohoo;                      //Bei klick auf Bowlerman
     public AudioClip game_won;                    //Spiel gewonnen
+    public AudioClip game_lose;                   //Spiel verlohren
 
 
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
@@ -27,8 +28,18 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
 
         //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
+
+
     }
+
+
+    void OnLoad()
+    {
+        this.musicSource.Play();
+    }
+  
+
 
 
     //Used to play single sound clips.
@@ -46,6 +57,15 @@ public class SoundManager : MonoBehaviour {
             case "game_won":
                 efxSource.clip = game_won;
                 efxSource.Play();
+                break;
+
+            case "game_lose":
+                efxSource.clip = game_lose;
+                efxSource.Play();
+                break;
+
+            case "stop_music":
+                this.musicSource.Stop();
                 break;
 
             default:

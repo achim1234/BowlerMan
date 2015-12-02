@@ -2,16 +2,11 @@
 using System.Collections;
 
 public class level : MonoBehaviour {
-    
-    /*
-    public void startgame()
-    {
-        Application.LoadLevel("demo");
-    }
-    */
+
 
     void OnMouseUp()
     {
+        SoundManager.instance.PlaySingle("stop_music");
         Application.LoadLevel("achims_level");
     } 
 }

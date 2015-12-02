@@ -317,19 +317,22 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator waitForHighscoreScene() // wait for x seconds
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         Application.LoadLevel("menu");
         // Application.LoadLevel("highscore"); // highscore not implemented yet
+        SoundManager.instance.musicSource.Play();
     }
 
 
     void setGameOver() // level / game lost
 	{
+        SoundManager.instance.PlaySingle("game_lose"); // Game-Over Sound abspielen
         isGameOver = true;
         GM.SetTotalScore(count);
         GM.SetGameState(GameState.GameOver);
 		setUIGameOver();
         StartCoroutine(waitForHighscoreScene());
+       
     }
 
 
