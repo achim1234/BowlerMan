@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour {
     public AudioClip woohoo;                      //Bei klick auf Bowlerman
     public AudioClip game_won;                    //Spiel gewonnen
     public AudioClip game_lose;                   //Spiel verlohren
+    public AudioClip hit_one_pin;                  //Sound bei Pin treffer
+    public AudioClip power_up;                      //Sound der bei einsammeln eines Power Up abgespielt wird
 
 
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
@@ -33,11 +35,6 @@ public class SoundManager : MonoBehaviour {
 
     }
 
-
-    void OnLoad()
-    {
-        this.musicSource.Play();
-    }
   
 
 
@@ -61,6 +58,14 @@ public class SoundManager : MonoBehaviour {
 
             case "game_lose":
                 efxSource.clip = game_lose;
+                efxSource.Play();
+                break;
+            case "pin_hit":
+                efxSource.clip = hit_one_pin;
+                efxSource.Play();
+                break;
+            case "power_up":
+                efxSource.clip = power_up;
                 efxSource.Play();
                 break;
 

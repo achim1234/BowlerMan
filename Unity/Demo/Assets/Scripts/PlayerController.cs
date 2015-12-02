@@ -205,6 +205,7 @@ public class PlayerController : MonoBehaviour {
                 case "BowlingPin": // player getes points
                     count = count + 10;
                     SetCountText();
+                    SoundManager.instance.PlaySingle("pin_hit");
                     break;
                 case "BowlingPin-EndLevel": // player finished level
                     count = count + 10;
@@ -215,6 +216,7 @@ public class PlayerController : MonoBehaviour {
                     other.gameObject.SetActive(false);
                     count = count + 10;
                     SetCountText();
+                    SoundManager.instance.PlaySingle("power_up");
                     break;
                 case "PowerUp-GrosseKugel": // increase size of player
                     if ((currentSize.x <= 3f) && (currentSize.y <= 3f) && (currentSize.z <= 3f)) // has player already reached max size
@@ -224,6 +226,7 @@ public class PlayerController : MonoBehaviour {
                     this.transform.localScale += new Vector3(1, 1, 1);
                     // disable pick / power up
                     other.gameObject.SetActive(false);
+                    SoundManager.instance.PlaySingle("power_up");
                     break;
                 case "PowerUp-KleineKugel": // decrease size of player
                     if ((currentSize.x >= 0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
@@ -232,6 +235,7 @@ public class PlayerController : MonoBehaviour {
                     }
                     // disable pick / power up
                     other.gameObject.SetActive(false);
+                    SoundManager.instance.PlaySingle("power_up");
                     break;
                 case "PowerUp-InvertControl": // invert control
                     if (invertControl)
