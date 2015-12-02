@@ -278,11 +278,13 @@ public class PlayerController : MonoBehaviour {
 
     void finishedLevel() // level won
     {
+        SoundManager.instance.PlaySingle("game_won"); // Gewonnen-Soung abspielen
         isGameOver = true;
         GM.SetTotalScore(count);
         GM.SetGameState(GameState.FinishedLevel);
         setUILevelWinText();
         StartCoroutine(loadNextLevel());
+        
     }
 
 
