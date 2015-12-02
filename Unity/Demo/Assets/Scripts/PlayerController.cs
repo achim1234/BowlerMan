@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     // player settings
     private Rigidbody rb;
 
-    
+    GameManager GM;
 
     private Vector3 lastPosition; // last position of player - needed to calculate speed of player
     private float plyayerSpeed = 0; // speed of player - at start 0
@@ -54,6 +54,10 @@ public class PlayerController : MonoBehaviour {
         timer = timerMax;
 
         winUIText.text = "";
+
+        GM = GameManager.Instance;
+        GM.SetGameState(GameState.Game);
+        GM.SetCurrentSceneName(Application.loadedLevelName);
     }
 
     // Update is called once per frame
@@ -277,15 +281,35 @@ public class PlayerController : MonoBehaviour {
     }
 
 
+
     void finishedLevel() // level won
     {
         isGameOver = true;
+        GM.SetTotalScore(count);
+        GM.SetGameState(GameState.FinishedLevel);
         setUILevelWinText();
+        loadNextLevel();
     }
-	
-	void setGameOver() // level / game lost
+
+    void loadNextLevel()
+    {
+        if (GM.currentscene == "achims_level")
+        {
+            Application.LoadLevel("daniels_level");
+        }
+        else
+        {
+            Application.LoadLevel("menu");
+        }
+    }
+
+
+
+    void setGameOver() // level / game lost
 	{
         isGameOver = true;
+        GM.SetTotalScore(count);
+        GM.SetGameState(GameState.GameOver);
 		setUIGameOver();
 	}
 

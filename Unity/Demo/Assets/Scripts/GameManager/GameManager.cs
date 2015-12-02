@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum GameState { NullState, Intro, MainMenu, Game }
+public enum GameState { NullState, Intro, MainMenu, Loading, Game, FinishedLevel, GameOver }
 public delegate void OnStateChangeHandler();
 
 /**
@@ -10,10 +10,20 @@ public delegate void OnStateChangeHandler();
 public class GameManager
 {
 
+
     private static GameManager _instance = null;
     public event OnStateChangeHandler OnStateChange;
+
     public GameState gameState { get; private set; }
-    protected GameManager() { }
+    public int totalscore { get; set; }
+    public string currentscene { get; set; }
+
+
+    protected GameManager() {
+        totalscore = 0;
+    }
+
+    
 
     // Singleton pattern implementation
     public static GameManager Instance
@@ -35,5 +45,15 @@ public class GameManager
         {
             OnStateChange();
         }
+    }
+
+    public void SetTotalScore(int score)
+    {
+        this.totalscore = score;
+    }
+
+    public void SetCurrentSceneName(string scene)
+    {
+        this.currentscene = scene;
     }
 }

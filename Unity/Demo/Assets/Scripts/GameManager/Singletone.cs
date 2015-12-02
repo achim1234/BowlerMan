@@ -4,6 +4,8 @@
  */
 public class Singletone
 {
+    // constructor method has been followed by protected keyword, which prevents from calling it
+    // The only way you can access singleton object is by referring to its public static property called Instance
     protected Singletone() { }
     private static Singletone _instance = null;
 
