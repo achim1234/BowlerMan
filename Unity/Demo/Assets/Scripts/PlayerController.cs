@@ -290,7 +290,8 @@ public class PlayerController : MonoBehaviour {
     IEnumerator loadNextLevel()
     {
         yield return new WaitForSeconds(6); // wait for x seconds
-        string currentscene = GM.currentscene;
+
+        string currentscene = GM.currentscene; // get name of current scene
 
         switch (currentscene)
         {
@@ -302,7 +303,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "werners_level":
                 Application.LoadLevel("menu");
-                // Application.LoadLevel("highscore"); 
+                // Application.LoadLevel("highscore"); // highscore not implemented yet
                 break;
             default:
                 Application.LoadLevel("menu");
