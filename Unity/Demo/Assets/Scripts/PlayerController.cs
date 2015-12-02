@@ -272,12 +272,6 @@ public class PlayerController : MonoBehaviour {
     void SetCountText()
     {
         countUIText.text = "Count: " + count.ToString();
-        /*
-        if(count >= 13)
-        {
-	        winText.text = "You Win!";
-        }
-        */
     }
 
 
@@ -288,21 +282,42 @@ public class PlayerController : MonoBehaviour {
         GM.SetTotalScore(count);
         GM.SetGameState(GameState.FinishedLevel);
         setUILevelWinText();
-        loadNextLevel();
+        StartCoroutine(loadNextLevel());
     }
 
-    void loadNextLevel()
+
+
+    IEnumerator loadNextLevel()
     {
-        if (GM.currentscene == "achims_level")
+        yield return new WaitForSeconds(6); // wait for x seconds
+        string currentscene = GM.currentscene;
+
+        switch (currentscene)
         {
-            Application.LoadLevel("daniels_level");
-        }
-        else
-        {
-            Application.LoadLevel("menu");
+            case "achims_level":
+                Application.LoadLevel("daniels_level");
+                break;
+            case "daniels_level":
+                Application.LoadLevel("werners_level");
+                break;
+            case "werners_level":
+                Application.LoadLevel("menu");
+                // Application.LoadLevel("highscore"); 
+                break;
+            default:
+                Application.LoadLevel("menu");
+                break;
         }
     }
 
+
+
+    IEnumerator waitForHighscoreScene() // wait for x seconds
+    {
+        yield return new WaitForSeconds(3);
+        Application.LoadLevel("menu");
+        // Application.LoadLevel("highscore"); // highscore not implemented yet
+    }
 
 
     void setGameOver() // level / game lost
@@ -311,7 +326,8 @@ public class PlayerController : MonoBehaviour {
         GM.SetTotalScore(count);
         GM.SetGameState(GameState.GameOver);
 		setUIGameOver();
-	}
+        StartCoroutine(waitForHighscoreScene());
+    }
 
 
     void setUITimer() // UI time
