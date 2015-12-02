@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour {
 
 
     public AudioClip woohoo;                      //Bei klick auf Bowlerman
+    public AudioClip game_won;                    //Spiel gewonnen
 
 
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
@@ -39,6 +40,11 @@ public class SoundManager : MonoBehaviour {
             case "woohoo_sound":
                 //Debug.Log("case tritt ein");
                 efxSource.clip = woohoo;
+                efxSource.Play();
+                break;
+
+            case "game_won":
+                efxSource.clip = game_won;
                 efxSource.Play();
                 break;
 
