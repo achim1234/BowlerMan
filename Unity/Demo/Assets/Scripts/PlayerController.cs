@@ -282,13 +282,12 @@ public class PlayerController : MonoBehaviour {
 
     void finishedLevel() // level won
     {
-        SoundManager.instance.PlaySingle("game_won"); // Gewonnen-Soung abspielen
+        SoundManager.instance.PlaySingle("game_won"); // Gewonnen-Sound abspielen
         isGameOver = true;
         GM.SetTotalScore(count);
         GM.SetGameState(GameState.FinishedLevel);
         setUILevelWinText();
-        StartCoroutine(loadNextLevel());
-        
+        StartCoroutine(loadNextLevel());        
     }
 
 
@@ -321,10 +320,10 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator waitForHighscoreScene() // wait for x seconds
     {
+        SoundManager.instance.musicSource.Play();
         yield return new WaitForSeconds(6);
         Application.LoadLevel("menu");
         // Application.LoadLevel("highscore"); // highscore not implemented yet
-        SoundManager.instance.musicSource.Play();
     }
 
 
