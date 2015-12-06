@@ -16,6 +16,7 @@ TagManager:
   - Water
   - BowlingPin
   - BowlingPin-EndLevel
+  - player
   layers:
   - Default
   - TransparentFX
