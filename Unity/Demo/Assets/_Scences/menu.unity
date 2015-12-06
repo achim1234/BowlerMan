@@ -23,9 +23,9 @@ RenderSettings:
   m_AmbientSkyColor: {r: .211999997, g: .226999998, b: .259000003, a: 1}
   m_AmbientEquatorColor: {r: .114, g: .125, b: .133000001, a: 1}
   m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 3.17000008
   m_AmbientMode: 0
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b8f20d5ca50d16143afc11f5e4af6fc1, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -23876,6 +23876,7 @@ MonoBehaviour:
   game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
   hit_one_pin: {fileID: 8300000, guid: 7f802b11d3e8fc64eb3e2feeb25dc8c3, type: 3}
+  power_up: {fileID: 8300000, guid: 24654ccfcf1fb77418ae6e76d509cca1, type: 3}
 --- !u!82 &804521010
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37960,8 +37961,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400616, guid: 3691b82571a4d6447952732135817f4d, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1269557714}
-  m_LocalRotation: {x: .728282452, y: -.0293485802, z: .0312516019, w: .683934689}
-  m_LocalPosition: {x: -.0997331664, y: .00860893633, z: 1.28327191}
+  m_LocalRotation: {x: .72884655, y: -.000538425578, z: .000460970943, w: .684676766}
+  m_LocalPosition: {x: .199927717, y: .000369548798, z: .90486145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1134723737}
@@ -39072,7 +39073,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9580d586e3c94e74492199c78c2b2f68, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9580d586e3c94e74492199c78c2b2f68, type: 3}
       propertyPath: m_LocalScale.z
@@ -44725,7 +44726,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9446ae47759d7e64ea1f0c823f44be71, type: 2}
+  - {fileID: 2100000, guid: f3768d7784a5425498c1276bf498dfef, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -53065,8 +53066,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400614, guid: 3691b82571a4d6447952732135817f4d, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1760693474}
-  m_LocalRotation: {x: -.0320153087, y: -.664474905, z: .746079862, w: -.0285135359}
-  m_LocalPosition: {x: .0996453837, y: .00769295543, z: -1.03389895}
+  m_LocalRotation: {x: -.000577335421, y: -.664970398, z: .746869445, w: -.000411188492}
+  m_LocalPosition: {x: .205416352, y: -.000348091125, z: -1.40381229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1134723737}
@@ -60648,7 +60649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d990cb985238e2c4d80886f65791116e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: .200000003
+  speed: .400000006
   target_z: 2
   target_minus_z: -2
 --- !u!82 &2018650336

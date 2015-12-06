@@ -16,10 +16,10 @@ RenderSettings:
   serializedVersion: 6
   m_Fog: 0
   m_FogColor: {r: .5, g: .5, b: .5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogMode: 1
+  m_FogDensity: .00200000009
   m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogEnd: 500
   m_AmbientSkyColor: {r: .211999997, g: .226999998, b: .259000003, a: 1}
   m_AmbientEquatorColor: {r: .114, g: .125, b: .133000001, a: 1}
   m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
@@ -467,7 +467,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 42a29124c09c1f54f8016a2ab509d05a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 84131311ad5d448498160ac44f3667b1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5969,8 +5969,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155705019}
   m_LocalRotation: {x: .0295316372, y: .0418999717, z: -.00123900373, w: .998684525}
-  m_LocalPosition: {x: 5.0999999, y: 205.660004, z: 249.800003}
-  m_LocalScale: {x: 25.0981026, y: 1, z: 60.6732903}
+  m_LocalPosition: {x: .5, y: 206.5, z: 246.699997}
+  m_LocalScale: {x: 25.0981026, y: 1, z: 63.4280624}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 23
