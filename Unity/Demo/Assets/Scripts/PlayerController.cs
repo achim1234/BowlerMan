@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour {
 
     void SetCountText()
     {
-        countUIText.text = "Count: " + count.ToString();
+        countUIText.text = "Score: " + count.ToString();
     }
 
 
@@ -352,14 +352,14 @@ public class PlayerController : MonoBehaviour {
 
     void setUIGameOver() // UI - shows text if game is over
     {
-        string text = "Game over! \n\n Points: " + count.ToString();
+        string text = "Game over! \n\n Score: " + count.ToString();
         winUIText.text = text;
     }
 
 
     void setUILevelWinText() // UI - shows text if game is over
     {
-        string text = "Good job! \n\n Points: " + count.ToString("0.00");
+        string text = "Good job! \n\n Score: " + count.ToString("0.00");
         winUIText.text = text;
     }
 }
