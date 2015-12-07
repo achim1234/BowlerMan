@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum GameState { NullState, Intro, MainMenu, Loading, Game, FinishedLevel, GameOver }
+public enum GameState { NullState, Intro, MainMenu, Loading, Game, FinishedLevel, HighScore, GameOver }
 public delegate void OnStateChangeHandler();
 
 /**
@@ -49,7 +49,12 @@ public class GameManager
 
     public void SetTotalScore(int score)
     {
-        this.totalscore = score;
+        this.totalscore += score;
+    }
+
+    public void resetTotalScore()
+    {
+        this.totalscore = 0;
     }
 
     public void SetCurrentSceneName(string scene)

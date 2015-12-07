@@ -10,6 +10,8 @@ using System.Collections.Generic;
 /// this is a singleton class.  to access these functions, use HighScoreManager._instance object.
 /// eg: HighScoreManager._instance.SaveHighScore("meh",1232);
 /// No need to attach this to any game object, thought it would create errors attaching.
+/// 
+/// http://answers.unity3d.com/questions/20773/how-do-i-make-a-highscores-board.html
 /// </summary>
 
 public class HighScoreManager : MonoBehaviour

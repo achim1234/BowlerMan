@@ -168,24 +168,7 @@ public class PlayerController : MonoBehaviour {
                 setUIHealth();
                 setGameOver();
             }
-
-            // get tag of pick / power up
-            string name = collision.gameObject.name;
-            switch (name)
-            {
-                case "BowlingPin-EndLevel":
-                    count = count + 50; // points for finisihing level
-                    count = (int)count * (int)timer; // bonus points for left time
-                    SetCountText();
-                    finishedLevel();
-                    break;
-                default:
-                    break;
-
-
-            }
         }
-
     }
 
 
@@ -208,7 +191,8 @@ public class PlayerController : MonoBehaviour {
                     SoundManager.instance.PlaySingle("pin_hit");
                     break;
                 case "BowlingPin-EndLevel": // player finished level
-                    count = count + 10;
+                    count = (int)count * ((int)timer / 2); // bonus points for left time
+                    count = count + 100; // add 100 extra points
                     SetCountText();
                     finishedLevel();
                     break;
@@ -304,7 +288,7 @@ public class PlayerController : MonoBehaviour {
                 Application.LoadLevel("daniels_level");
                 break;
             case "daniels_level":
-                Application.LoadLevel("werners_level");
+                Application.LoadLevel("test_highscore");
                 break;
             case "werners_level":
                 Application.LoadLevel("menu");
@@ -322,7 +306,7 @@ public class PlayerController : MonoBehaviour {
     {
         SoundManager.instance.musicSource.Play();
         yield return new WaitForSeconds(6);
-        Application.LoadLevel("menu");
+        Application.LoadLevel("test_highscore");
         // Application.LoadLevel("highscore"); // highscore not implemented yet
     }
 
@@ -334,8 +318,7 @@ public class PlayerController : MonoBehaviour {
         GM.SetTotalScore(count);
         GM.SetGameState(GameState.GameOver);
 		setUIGameOver();
-        StartCoroutine(waitForHighscoreScene());
-       
+        StartCoroutine(waitForHighscoreScene());       
     }
 
 
