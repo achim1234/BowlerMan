@@ -10,6 +10,7 @@ public class pipe_rotate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(new Vector3(0, 50,0) * (Time.deltaTime/10));
+        //transform.Rotate(new Vector3(0, 50,0) * (Time.deltaTime/5));
+        transform.RotateAround(this.transform.position, this.transform.up, 20 * Time.deltaTime);
     }
 }
