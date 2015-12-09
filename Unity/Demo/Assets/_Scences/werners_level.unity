@@ -355,7 +355,6 @@ GameObject:
   - 82: {fileID: 68052932}
   - 82: {fileID: 68052931}
   - 114: {fileID: 68052930}
-  - 81: {fileID: 68052929}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -363,13 +362,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &68052929
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 68052928}
-  m_Enabled: 1
 --- !u!114 &68052930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   efxSource: {fileID: 68052931}
-  musicSource: {fileID: 68052932}
   woohoo: {fileID: 8300000, guid: 0dc5172b9545ce74d844856a144b58f3, type: 3}
   game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
@@ -7166,6 +7157,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 363165905}
+    - target: {fileID: 8196754, guid: d2712876d2b421b468958995232c91a8, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2712876d2b421b468958995232c91a8, type: 2}
   m_IsPrefabParent: 0

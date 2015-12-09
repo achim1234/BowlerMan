@@ -4,7 +4,7 @@ using System.Collections;
 public class SoundManager : MonoBehaviour {
 
     public AudioSource efxSource;                           //Drag a reference to the audio source which will play the sound effects.
-    public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
+    //public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
 
 
     public AudioClip woohoo;                      //Bei klick auf Bowlerman
@@ -68,11 +68,11 @@ public class SoundManager : MonoBehaviour {
                 efxSource.clip = power_up;
                 efxSource.Play();
                 break;
-
+            /*
             case "stop_music":
                 this.musicSource.Stop();
                 break;
-
+                */
             default:
                 Debug.Log("Default");
                 break;

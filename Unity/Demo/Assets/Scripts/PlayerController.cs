@@ -304,7 +304,7 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator waitForHighscoreScene() // wait for x seconds
     {
-        SoundManager.instance.musicSource.Play();
+        //SoundManager.instance.musicSource.Play();
         yield return new WaitForSeconds(6);
         Application.LoadLevel("test_highscore");
         // Application.LoadLevel("highscore"); // highscore not implemented yet
