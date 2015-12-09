@@ -41,12 +41,15 @@ public class PlayerController : MonoBehaviour {
     public Text winUIText;
     public Text timerUIText;
     public Text healthUIText;
+    public Text countdownUIText;
 
 
 
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true; // player is not able to move
+
         count = 0;
         SetCountText();
         setUIHealth();
@@ -58,7 +61,10 @@ public class PlayerController : MonoBehaviour {
         GM = GameManager.Instance;
         GM.SetGameState(GameState.Game);
         GM.SetCurrentSceneName(Application.loadedLevelName);
+
+        StartCoroutine(startCountDown()); // start countdown
     }
+
 
     // Update is called once per frame
     // is run before rendering a frame
@@ -257,6 +263,21 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+
+    IEnumerator startCountDown()
+    {
+        countdownUIText.text = "3";
+        yield return new WaitForSeconds(1);
+        countdownUIText.text = "2";
+        yield return new WaitForSeconds(1);
+        countdownUIText.text = "1";
+        yield return new WaitForSeconds(1);
+        countdownUIText.text = "Go";
+        rb.isKinematic = false; // player is able to move
+        yield return new WaitForSeconds(1.5f);
+        countdownUIText.text = "";
+    }
+
     void SetCountText()
     {
         countUIText.text = "Score: " + count.ToString();
@@ -271,7 +292,7 @@ public class PlayerController : MonoBehaviour {
         GM.SetTotalScore(count);
         GM.SetGameState(GameState.FinishedLevel);
         setUILevelWinText();
-        StartCoroutine(loadNextLevel());        
+        StartCoroutine(loadNextLevel());
     }
 
 
