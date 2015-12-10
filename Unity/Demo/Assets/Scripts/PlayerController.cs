@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
     public Text timerUIText;
     public Text healthUIText;
     public Text countdownUIText;
+    public Text winTotalScoreUIText;
 
 
 
@@ -284,17 +285,58 @@ public class PlayerController : MonoBehaviour {
     {
         SoundManager.instance.PlaySingle("game_won"); // Gewonnen-Sound abspielen
         isGameOver = true;
-        GM.SetTotalScore(count);
         GM.SetGameState(GameState.FinishedLevel);
         setUILevelWinText();
+        StartCoroutine(updateTotalScoreAndUI());
         StartCoroutine(loadNextLevel());
+    }
+
+    void setGameOver() // level / game lost
+    {
+        SoundManager.instance.PlaySingle("game_lose"); // Game-Over Sound abspielen
+        isGameOver = true;
+        GM.SetGameState(GameState.GameOver);
+        setUIGameOver();
+        StartCoroutine(updateTotalScoreAndUI());
+        StartCoroutine(waitForHighscoreScene());
+    }
+
+
+    IEnumerator updateTotalScoreAndUI()
+    {
+        yield return new WaitForSeconds(2); // wait for x seconds
+        winTotalScoreUIText.text = "Total Score: " + GM.totalscore.ToString();
+        yield return new WaitForSeconds(2); // wait for x seconds
+
+        int score_ui = GM.totalscore; // get total score
+        
+        for (int i = 0;i <= count; i++)
+        {
+            winTotalScoreUIText.text = "Total Score: " + (score_ui + i).ToString();
+            if(GM.gameState == GameState.GameOver)
+            {
+                winUIText.text = "Game over! \n\n Score: " + (count - i).ToString();
+            }
+            else
+            {
+                winUIText.text = "Well done! \n\n Score: " + (count - i).ToString();
+
+            }
+            countUIText.text = "Score: " + (count- i).ToString();
+            yield return new WaitForSeconds(0.02f); // wait for x seconds
+            // http://answers.unity3d.com/questions/43752/is-waitforseconds-framerate-dependent.html
+        }
+
+        GM.SetTotalScore(count); // update total score in game manager
+
+        yield return new WaitForSeconds(2); // wait for x seconds
     }
 
 
 
     IEnumerator loadNextLevel()
     {
-        yield return new WaitForSeconds(6); // wait for x seconds
+        yield return new WaitForSeconds(10); // wait for x seconds
 
         string currentscene = GM.currentscene; // get name of current scene
 
@@ -321,21 +363,13 @@ public class PlayerController : MonoBehaviour {
     IEnumerator waitForHighscoreScene() // wait for x seconds
     {
         //SoundManager.instance.musicSource.Play();
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(10);
         Application.LoadLevel("test_highscore");
         // Application.LoadLevel("highscore"); // highscore not implemented yet
     }
 
 
-    void setGameOver() // level / game lost
-	{
-        SoundManager.instance.PlaySingle("game_lose"); // Game-Over Sound abspielen
-        isGameOver = true;
-        GM.SetTotalScore(count);
-        GM.SetGameState(GameState.GameOver);
-		setUIGameOver();
-        StartCoroutine(waitForHighscoreScene());       
-    }
+
 
 
     void setUITimer() // UI time
@@ -355,6 +389,10 @@ public class PlayerController : MonoBehaviour {
     void setUIHealth() // UI health
     {
         int health = (int)((healthPoints / 50) * 100);
+        if(health <= 10)
+        {
+            healthUIText.color = Color.red;
+        }
         healthUIText.text = "Health: " + health.ToString("0");
     }
 
@@ -367,7 +405,7 @@ public class PlayerController : MonoBehaviour {
 
     void setUILevelWinText() // UI - shows text if game is over
     {
-        string text = "Good job! \n\n Score: " + count.ToString("0.00");
+        string text = "Well done! \n\n Score: " + count.ToString();
         winUIText.text = text;
     }
 }
