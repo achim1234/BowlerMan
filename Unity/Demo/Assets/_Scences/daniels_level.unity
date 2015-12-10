@@ -715,7 +715,6 @@ GameObject:
   - 82: {fileID: 175510086}
   - 82: {fileID: 175510085}
   - 114: {fileID: 175510084}
-  - 81: {fileID: 175510083}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -723,13 +722,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &175510083
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 175510082}
-  m_Enabled: 1
 --- !u!114 &175510084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,7 +734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   efxSource: {fileID: 175510085}
-  musicSource: {fileID: 175510086}
   woohoo: {fileID: 8300000, guid: 0dc5172b9545ce74d844856a144b58f3, type: 3}
   game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
@@ -6188,7 +6179,7 @@ Prefab:
       objectReference: {fileID: 1039117402}
     - target: {fileID: 8196754, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2712876d2b421b468958995232c91a8, type: 2}
@@ -7277,6 +7268,76 @@ MeshFilter:
 GameObject:
   m_PrefabParentObject: {fileID: 127286, guid: d2712876d2b421b468958995232c91a8, type: 2}
   m_PrefabInternal: {fileID: 1469091656}
+--- !u!82 &1784200554
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1784200553}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 84131311ad5d448498160ac44f3667b1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &1784200560
 MonoBehaviour:
   m_ObjectHideFlags: 0
