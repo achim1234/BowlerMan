@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum GameState { NullState, Intro, MainMenu, Loading, Game, FinishedLevel, HighScore, GameOver }
+public enum GameState { NullState, Intro, MainMenu, Loading, Countdown, Game, FinishedLevel, HighScore, GameOver }
 public delegate void OnStateChangeHandler();
 
 /**

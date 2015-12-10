@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
         winUIText.text = "";
 
         GM = GameManager.Instance;
-        GM.SetGameState(GameState.Game);
+        GM.SetGameState(GameState.Countdown);
         GM.SetCurrentSceneName(Application.loadedLevelName);
 
         StartCoroutine(startCountDown()); // start countdown
@@ -72,17 +72,10 @@ public class PlayerController : MonoBehaviour {
     {
         if (!isGameOver)
         {
-            timer -= Time.deltaTime;
-
-            setUITimer();
-
             if (timer < 0) // no more time left -> game over
             {
                 Debug.Log("timer Zero reached !");
-
-                timer = 0;
-                setUITimer();
-				
+                timer = 0;				
 				setGameOver();
             }
         }
@@ -94,6 +87,7 @@ public class PlayerController : MonoBehaviour {
 				Application.LoadLevel("menu");                
             }
         }
+        setUITimer();
     }
 
     // is ran before performing any physics calculation
@@ -273,9 +267,10 @@ public class PlayerController : MonoBehaviour {
         countdownUIText.text = "1";
         yield return new WaitForSeconds(1);
         countdownUIText.text = "Go";
+        GM.SetGameState(GameState.Game); // set game state to 'Game'
         rb.isKinematic = false; // player is able to move
-        yield return new WaitForSeconds(1.5f);
-        countdownUIText.text = "";
+        yield return new WaitForSeconds(1.5f); // 'Go' is displayed for 1.5 seconds
+        countdownUIText.text = ""; // remove 'Go'
     }
 
     void SetCountText()
@@ -345,6 +340,15 @@ public class PlayerController : MonoBehaviour {
 
     void setUITimer() // UI time
     {
+        if (GM.gameState == GameState.Game)
+        {
+            // Zeit wird erst gestartet sobald das Spiel begonnen wurde
+            timer -= Time.deltaTime;
+            if (timer < 10)
+            {
+                timerUIText.color = Color.red;
+            }
+        }
         timerUIText.text = "Time: " + timer.ToString("0.00");
     }
 
