@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     public bool isFalling = false;
     public float jumpForce = 10.0f;
 
-    public float speedMultiplier; // multiplier to adjust speed of player
+    public float speedMultiplier = 1; // multiplier to adjust speed of player
 
     private int count; // counter - how much pick ups were picked
 
@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour {
                     SoundManager.instance.PlaySingle("pin_hit");
                     break;
                 case "BowlingPin-EndLevel": // player finished level
-                    count = (int)count * ((int)timer / 2); // bonus points for left time
+                    count += (int)count * ((int)timer / 2); // bonus points for left time
                     count = count + 100; // add 100 extra points
                     SetCountText();
                     finishedLevel();
@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour {
                     other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-SpeedUp": // speed up player
-                    speedMultiplier += 10;
+                    speedMultiplier += 1.3f;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
                     break;

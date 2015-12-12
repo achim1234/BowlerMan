@@ -15902,6 +15902,7 @@ GameObject:
   - 23: {fileID: 545969522}
   - 65: {fileID: 545969524}
   - 114: {fileID: 545969525}
+  - 114: {fileID: 545969526}
   m_Layer: 0
   m_Name: Highscore_bar
   m_TagString: Untagged
@@ -15980,6 +15981,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_speed: 300
   z_value: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &545969526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545969520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5164d298450b99949b4ca8fd983a32dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &550804856
 GameObject:
   m_ObjectHideFlags: 0
