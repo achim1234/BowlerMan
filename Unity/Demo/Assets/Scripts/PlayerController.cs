@@ -48,20 +48,30 @@ public class PlayerController : MonoBehaviour {
 
     void Start ()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true; // player is not able to move
-
-        count = 0;
-        SetCountText();
-        setUIHealth();
-
-        timer = timerMax;
-
-        winUIText.text = "";
-
+        // game manager stuff - set state + scene name
         GM = GameManager.Instance;
         GM.SetGameState(GameState.Countdown);
         GM.SetCurrentSceneName(Application.loadedLevelName);
+
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true; // player is not able to move during countdown
+
+        // reset score + UI elements
+        count = 0;
+        SetCountText();
+        setUIHealth();
+        winUIText.text = "";
+
+        // set time for specific level
+        if (GM.currentscene == "daniels_level")
+        {
+            timerMax = 50.0f;
+            timer = timerMax;
+        }
+        else
+        {
+            timer = timerMax;
+        }
 
         StartCoroutine(startCountDown()); // start countdown
     }
