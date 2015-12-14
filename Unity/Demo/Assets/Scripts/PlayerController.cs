@@ -68,10 +68,16 @@ public class PlayerController : MonoBehaviour {
             timerMax = 50.0f;
             timer = timerMax;
         }
+        else if (GM.currentscene == "achims_level_2")
+        {
+	        timerMax = 200.0f;
+	        timer = timerMax;
+        }
         else
         {
             timer = timerMax;
         }
+       
 
         StartCoroutine(startCountDown()); // start countdown
     }
