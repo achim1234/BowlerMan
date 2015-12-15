@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scences/menu.unity
   - enabled: 1
     path: Assets/_Scences/achims_level_2.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scences/achims_level.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scences/daniels_level.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scences/werners_level.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scences/test_highscore.unity
