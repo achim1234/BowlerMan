@@ -68,10 +68,16 @@ public class PlayerController : MonoBehaviour {
             timerMax = 50.0f;
             timer = timerMax;
         }
+        else if (GM.currentscene == "achims_level_2")
+        {
+	        timerMax = 200.0f;
+	        timer = timerMax;
+        }
         else
         {
             timer = timerMax;
         }
+       
 
         StartCoroutine(startCountDown()); // start countdown
     }
@@ -153,7 +159,12 @@ public class PlayerController : MonoBehaviour {
                     rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
                 }
             }
-        }      
+        }
+        else // game is over
+        {
+            // slightly slow down player
+            rb.velocity = rb.velocity * 0.985f;
+        } 
     }
 
     void OnCollisionEnter(Collision collision)
