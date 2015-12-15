@@ -56,57 +56,77 @@ public class MenuController : MonoBehaviour
 
     void OnGUI()
     {
-        if(GM.totalscore > 0) 
+        if (added_highscore == false) // player did not yet enter his name
         {
-            if (added_highscore == false)
+            // determine if player is allowed to enter name in highscore
+            highscore = HighScoreManager._instance.GetHighScore(); // get current highscore
+            int count_scores = 0; // hom many entries are in the highscore
+            int last_highscore = 0; // what is the score of the last / 10th entry of the highscore
+            foreach (Scores _score in highscore) // loop through highscore entries
             {
-                int space_left = Screen.width / 2 - 200; // calc left space
-
-                GUILayout.BeginArea(new Rect(space_left, 50, 200, 650));
-
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("Name :");
-                username = GUILayout.TextField(username, 20);
-                GUILayout.EndHorizontal();
-
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("Score :");
-                GUILayout.Label("" + GM.totalscore);
-                score = GM.totalscore.ToString();
-                GUILayout.EndHorizontal();
-
-                // add button
-                if (GUILayout.Button("Add Score"))
+                if (count_scores <= 10)
                 {
-                    if (!username.Equals("")) // did user enter a name
-                    {
-                        added_highscore = true;
-                        HighScoreManager._instance.SaveHighScore(username, System.Int32.Parse(score));
-                        highscore = HighScoreManager._instance.GetHighScore();
-                    }
+                    count_scores++;
+                    last_highscore = _score.score;
                 }
-                GUILayout.EndArea();
-
+                else
+                {
+                    break;
+                }
             }
-            else
+
+
+            // player has more than 0 points and there are not already 10 entries in the highscore
+            if ((GM.totalscore > 0) && (count_scores < 10))
+            {
+                addNameScoreToHighscore();
+            }
+            // player has more than 0 points and there are already 10 entries in the highscore -> score must be higher than highscore number 10
+            else if ((GM.totalscore > 0) && (GM.totalscore > last_highscore))
+            {
+                addNameScoreToHighscore();
+            }
+            else // player has no points -> just show highcore
             {
                 showHighScore();
             }
-
-
-            /*
-            if (GUILayout.Button("Get LeaderBoard"))
-            {
-                highscore = HighScoreManager._instance.GetHighScore();
-            }
-            */
-
-
-        } // player has no points -> just show highcore
-        else
+        }
+        else // player already entered his name - just show highscore
         {
             showHighScore();
         }
+    }
+
+
+    public void addNameScoreToHighscore()
+    {
+
+        int space_left = Screen.width / 2 - 200; // calc left space
+
+        GUILayout.BeginArea(new Rect(space_left, 50, 200, 650));
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Name :");
+        username = GUILayout.TextField(username, 20);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Score :");
+        GUILayout.Label("" + GM.totalscore);
+        score = GM.totalscore.ToString();
+        GUILayout.EndHorizontal();
+
+        // add button
+        if (GUILayout.Button("Add Score"))
+        {
+            if (!username.Equals("")) // did user enter a name
+            {
+                added_highscore = true;
+                HighScoreManager._instance.SaveHighScore(username, System.Int32.Parse(score));
+                highscore = HighScoreManager._instance.GetHighScore();
+            }
+        }
+        GUILayout.EndArea();        
     }
 
     public void showHighScore()
@@ -123,7 +143,7 @@ public class MenuController : MonoBehaviour
         GUILayout.EndHorizontal();
 
         GUILayout.Space(6);
-        displaySeparator();
+        GUILayout.Label("___________________________________________________");
         GUILayout.Space(7);
 
         highscore = HighScoreManager._instance.GetHighScore();
@@ -144,10 +164,5 @@ public class MenuController : MonoBehaviour
         }
         //GUILayout.FlexibleSpace();
         GUILayout.EndArea();
-    }
-
-    public void displaySeparator()
-    {
-        GUILayout.Label("_________________________________________________________");
     }
 }
