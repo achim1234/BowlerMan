@@ -122,7 +122,9 @@ public class MenuController : MonoBehaviour
         GUILayout.Label("Score");
         GUILayout.EndHorizontal();
 
-        GUILayout.Space(15);
+        GUILayout.Space(6);
+        displaySeparator();
+        GUILayout.Space(7);
 
         highscore = HighScoreManager._instance.GetHighScore();
         foreach (Scores _score in highscore)
@@ -142,5 +144,10 @@ public class MenuController : MonoBehaviour
         }
         //GUILayout.FlexibleSpace();
         GUILayout.EndArea();
+    }
+
+    public void displaySeparator()
+    {
+        GUILayout.Label("_________________________________________________________");
     }
 }

@@ -196,6 +196,7 @@ GameObject:
   - 92: {fileID: 1454547989}
   - 124: {fileID: 1454547988}
   - 81: {fileID: 1454547987}
+  - 45: {fileID: 1454547992}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -270,3 +271,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!45 &1454547992
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1454547986}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 19e2485c6f92d6944ad20466ac77b04c, type: 2}
