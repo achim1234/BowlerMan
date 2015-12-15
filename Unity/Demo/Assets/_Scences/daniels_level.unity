@@ -1446,7 +1446,7 @@ MonoBehaviour:
   game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
   hit_one_pin: {fileID: 8300000, guid: 7f802b11d3e8fc64eb3e2feeb25dc8c3, type: 3}
-  power_up: {fileID: 0}
+  power_up: {fileID: 8300000, guid: 24654ccfcf1fb77418ae6e76d509cca1, type: 3}
 --- !u!82 &175510085
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1528,7 +1528,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84131311ad5d448498160ac44f3667b1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .379999995
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6213,7 +6213,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448826, guid: fbba5a78058940549ab663fd2cd9c645, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 248.600006
+      value: 244.429993
       objectReference: {fileID: 0}
     - target: {fileID: 448826, guid: fbba5a78058940549ab663fd2cd9c645, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6237,7 +6237,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448826, guid: fbba5a78058940549ab663fd2cd9c645, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11407254, guid: fbba5a78058940549ab663fd2cd9c645, type: 2}
       propertyPath: winUIText
@@ -12936,7 +12936,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400662, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 255.600006
+      value: 251.429993
       objectReference: {fileID: 0}
     - target: {fileID: 400662, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -12960,7 +12960,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400662, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11416426, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: player

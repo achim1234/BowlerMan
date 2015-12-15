@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/_Scences/werners_level.unity
   - enabled: 1
     path: Assets/_Scences/test_highscore.unity
+  - enabled: 1
+    path: Assets/_Scences/achims_level_2.unity

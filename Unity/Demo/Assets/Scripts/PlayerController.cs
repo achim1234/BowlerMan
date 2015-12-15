@@ -233,6 +233,7 @@ public class PlayerController : MonoBehaviour {
                     SoundManager.instance.PlaySingle("power_up");
                     break;
                 case "PowerUp-InvertControl": // invert control
+                    SoundManager.instance.PlaySingle("power_up");
                     if (invertControl)
                     {
                         invertControl = false; // control is no longer inverted
@@ -245,16 +246,19 @@ public class PlayerController : MonoBehaviour {
                     other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-SpeedUp": // speed up player
+                    SoundManager.instance.PlaySingle("power_up");
                     speedMultiplier += 1.3f;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-AddMass": // increase mass of player
+                    SoundManager.instance.PlaySingle("power_up");
                     rb.mass += 0.145f;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
                     break;
                 case "PowerUp-PlayerJump": //player jump
+                    SoundManager.instance.PlaySingle("power_up");
                     playerJump = true;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
