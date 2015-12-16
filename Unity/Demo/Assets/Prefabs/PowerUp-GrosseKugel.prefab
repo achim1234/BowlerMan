@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2335338}
   - 114: {fileID: 11419026}
   - 54: {fileID: 5445798}
+  - 122: {fileID: 12225936}
   m_Layer: 0
   m_Name: PowerUp-GrosseKugel
   m_TagString: PowerUp-GrosseKugel
@@ -101,6 +102,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf2f48d3a8ee5b46a8152fd46594226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!122 &12225936
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127288}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4282335483
+  m_Size: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -119,6 +131,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: PowerUp-GrosseKugel
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.rgba
+      value: 4282335483
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

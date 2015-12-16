@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2356882}
   - 54: {fileID: 5497476}
   - 114: {fileID: 11436922}
+  - 122: {fileID: 12245488}
   m_Layer: 0
   m_Name: PowerUp-KleineKugel
   m_TagString: PowerUp-KleineKugel
@@ -101,13 +102,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf2f48d3a8ee5b46a8152fd46594226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!122 &12245488
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152450}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4281036544
+  m_Size: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Color.rgba
+      value: 4281036544
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 152450}
