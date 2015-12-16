@@ -329,30 +329,77 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator updateTotalScoreAndUI()
     {
-        yield return new WaitForSeconds(2); // wait for x seconds
+        yield return new WaitForSeconds(1.5f); // wait for x seconds
         winTotalScoreUIText.text = "Total Score: " + GM.totalscore.ToString();
-        yield return new WaitForSeconds(2); // wait for x seconds
+        yield return new WaitForSeconds(1.5f); // wait for x seconds
 
         int score_ui = GM.totalscore; // get total score
+        int level_score = count; // count / score of current level
+
+        if (level_score > 1110)
+        {
+            for (int i = 0; i <= level_score; i += 1000)
+            {
+                winTotalScoreUIText.text = "Total Score: " + (score_ui + i).ToString();
+                score_ui += i;
+                if (GM.gameState == GameState.GameOver)
+                {
+                    winUIText.text = "Game over! \n\n Score: " + (level_score - i).ToString();
+                }
+                else
+                {
+                    winUIText.text = "Well done! \n\n Score: " + (level_score - i).ToString();
+
+                }
+                countUIText.text = "Score: " + (level_score - i).ToString();
+                yield return new WaitForSeconds(0.0425f); // wait for x seconds
+                // http://answers.unity3d.com/questions/43752/is-waitforseconds-framerate-dependent.html
+                level_score -= i;
+            }
+        }
+
+
+        if (level_score > 210)
+        {
+            for (int i = 0; i <= level_score; i+=100)
+            {
+                winTotalScoreUIText.text = "Total Score: " + (score_ui + i).ToString();
+                score_ui += i;
+                if (GM.gameState == GameState.GameOver)
+                {
+                    winUIText.text = "Game over! \n\n Score: " + (level_score - i).ToString();
+                }
+                else
+                {
+                    winUIText.text = "Well done! \n\n Score: " + (level_score - i).ToString();
+
+                }
+                countUIText.text = "Score: " + (level_score - i).ToString();
+                yield return new WaitForSeconds(0.0425f); // wait for x seconds
+                // http://answers.unity3d.com/questions/43752/is-waitforseconds-framerate-dependent.html
+                level_score -= i;
+            }
+        }
+
         
-        for (int i = 0;i <= count; i++)
+        for (int i = 0;i <= level_score; i++)
         {
             winTotalScoreUIText.text = "Total Score: " + (score_ui + i).ToString();
             if(GM.gameState == GameState.GameOver)
             {
-                winUIText.text = "Game over! \n\n Score: " + (count - i).ToString();
+                winUIText.text = "Game over! \n\n Score: " + (level_score - i).ToString();
             }
             else
             {
-                winUIText.text = "Well done! \n\n Score: " + (count - i).ToString();
+                winUIText.text = "Well done! \n\n Score: " + (level_score - i).ToString();
 
             }
-            countUIText.text = "Score: " + (count- i).ToString();
-            yield return new WaitForSeconds(0.02f); // wait for x seconds
+            countUIText.text = "Score: " + (level_score - i).ToString();
+            yield return new WaitForSeconds(0.015f); // wait for x seconds
             // http://answers.unity3d.com/questions/43752/is-waitforseconds-framerate-dependent.html
         }
 
-        GM.SetTotalScore(count); // update total score in game manager
+        // GM.SetTotalScore(count); // update total score in game manager
 
         yield return new WaitForSeconds(2); // wait for x seconds
     }
@@ -361,7 +408,9 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator loadNextLevel()
     {
-        yield return new WaitForSeconds(10); // wait for x seconds
+        yield return new WaitForSeconds(11); // wait for x seconds
+
+        GM.SetTotalScore(count); // update total score in game manager
 
         string currentscene = GM.currentscene; // get name of current scene
 
@@ -371,10 +420,10 @@ public class PlayerController : MonoBehaviour {
                 Application.LoadLevel("daniels_level");
                 break;
             case "daniels_level":
-                Application.LoadLevel("test_highscore");
+                Application.LoadLevel("werners_level");
                 break;
             case "werners_level":
-                Application.LoadLevel("menu");
+                Application.LoadLevel("test_highscore");
                 // Application.LoadLevel("highscore"); // highscore not implemented yet
                 break;
             default:
@@ -385,12 +434,11 @@ public class PlayerController : MonoBehaviour {
 
 
 
-    IEnumerator waitForHighscoreScene() // wait for x seconds
+    IEnumerator waitForHighscoreScene() // wait for x seconds and then load highscore scene
     {
-        //SoundManager.instance.musicSource.Play();
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(11);
+        GM.SetTotalScore(count); // update total score in game manager
         Application.LoadLevel("test_highscore");
-        // Application.LoadLevel("highscore"); // highscore not implemented yet
     }
 
 
