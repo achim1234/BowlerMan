@@ -116,6 +116,21 @@ public class MenuController : MonoBehaviour
         score = GM.totalscore.ToString();
         GUILayout.EndHorizontal();
 
+        if (Event.current.keyCode == KeyCode.Return)
+        {
+            Debug.Log("pressed enter");
+            if (!username.Equals("")) // did user enter a name
+            {
+                added_highscore = true;
+                HighScoreManager._instance.SaveHighScore(username, System.Int32.Parse(score));
+                highscore = HighScoreManager._instance.GetHighScore();
+            }
+            else
+            {
+                // player did not enter a name
+            }
+        }
+
         // add button
         if (GUILayout.Button("Add Score"))
         {
@@ -163,6 +178,12 @@ public class MenuController : MonoBehaviour
             Application.LoadLevel("menu");
         }
         //GUILayout.FlexibleSpace();
+        /*
+        if (GUILayout.Button("Clear Leaderboard"))
+        {
+            HighScoreManager._instance.ClearLeaderBoard();
+        }
+        */
         GUILayout.EndArea();
     }
 }

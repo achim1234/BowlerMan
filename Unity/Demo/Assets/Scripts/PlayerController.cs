@@ -44,7 +44,10 @@ public class PlayerController : MonoBehaviour {
     public Text countdownUIText;
     public Text winTotalScoreUIText;
 
+    public Button button_spiel_beenden;
+    public Button button_spiel_fortsetzen;
 
+    
 
     void Start ()
     {
@@ -61,6 +64,7 @@ public class PlayerController : MonoBehaviour {
         SetCountText();
         setUIHealth();
         winUIText.text = "";
+        setUpButtons();
 
         // set time for specific level
         if (GM.currentscene == "daniels_level")
@@ -101,18 +105,41 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space))
             {
 				Debug.Log("load level menu");
-				Application.LoadLevel("menu");                
+				Application.LoadLevel("menu");
             }
         }
         setUITimer();
     }
+
+
+
 
     // is ran before performing any physics calculation
     void FixedUpdate()
     {
         if (!isGameOver)
         {
-            //Debug.Log(healthPoints);
+            // Pause bei druecken von 'Escape' (ausser waehrend Countdown)
+            if (Input.GetKeyUp(KeyCode.Escape) && GM.gameState != GameState.Countdown)
+            {
+                // Spiel ist bereits pausiert
+                if (GM.gameState == GameState.GamePaused)
+                {
+                    resumeGame();
+                }
+                else // pausiere Spiel
+                {
+                    GM.SetGameState(GameState.GamePaused); // set game state to 'Game Paused'
+                    Debug.Log("show menu");
+
+                    rb.isKinematic = true; // player is not able to move
+
+                    enableButtonSpielFortsetzen();
+                    enableButtonSpielBeenden();
+                }
+
+            }
+
             // get player input
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
@@ -481,4 +508,65 @@ public class PlayerController : MonoBehaviour {
         string text = "Well done! \n\n Score: " + count.ToString();
         winUIText.text = text;
     }
+
+
+    void setUpButtons()
+    {
+        // disable buttons (at start)
+        disableButtonSpielFortsetzen();
+        disableButtonSpielBeenden();
+
+        // add listener
+        button_spiel_beenden.GetComponent<Button>().onClick.AddListener(() => { playerClickedQuitsGame(); });
+        button_spiel_fortsetzen.GetComponent<Button>().onClick.AddListener(() => { playerClickedResumesGame(); });
+    }
+
+    void playerClickedQuitsGame()
+    {
+        GM.SetGameState(GameState.GameOver);
+        Application.LoadLevel("menu");
+    }
+
+    void playerClickedResumesGame()
+    {
+        resumeGame();
+    }
+
+    void resumeGame()
+    {
+        GM.SetGameState(GameState.Game); // set game state to 'Game'
+        Debug.Log("spiel geht weiter");
+
+        rb.isKinematic = false; // player is able to move
+
+        disableButtonSpielFortsetzen();
+        disableButtonSpielBeenden();
+    }
+
+
+    void enableButtonSpielFortsetzen()
+    {
+        button_spiel_fortsetzen.interactable = true;
+        button_spiel_fortsetzen.gameObject.SetActive(true);
+    }
+
+    void disableButtonSpielFortsetzen()
+    {
+        button_spiel_fortsetzen.interactable = false;
+        button_spiel_fortsetzen.gameObject.SetActive(false);
+    }
+
+    void enableButtonSpielBeenden()
+    {
+        button_spiel_beenden.interactable = true;
+        button_spiel_beenden.gameObject.SetActive(true);
+    }
+
+    void disableButtonSpielBeenden()
+    {
+        button_spiel_beenden.interactable = false;
+        button_spiel_beenden.gameObject.SetActive(false);
+    }
+
+
 }
