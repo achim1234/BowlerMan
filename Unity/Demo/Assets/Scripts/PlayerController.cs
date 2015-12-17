@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
 
     // player settings
     private Rigidbody rb;
+    Vector3 player_velocity;
+    Quaternion player_rotation;
 
     GameManager GM;
 
@@ -65,6 +67,8 @@ public class PlayerController : MonoBehaviour {
         setUIHealth();
         winUIText.text = "";
         setUpButtons();
+
+        
 
         // set time for specific level
         if (GM.currentscene == "daniels_level")
@@ -129,13 +133,7 @@ public class PlayerController : MonoBehaviour {
                 }
                 else // pausiere Spiel
                 {
-                    GM.SetGameState(GameState.GamePaused); // set game state to 'Game Paused'
-                    Debug.Log("show menu");
-
-                    rb.isKinematic = true; // player is not able to move
-
-                    enableButtonSpielFortsetzen();
-                    enableButtonSpielBeenden();
+                    pauseGame();
                 }
 
             }
@@ -537,10 +535,26 @@ public class PlayerController : MonoBehaviour {
         GM.SetGameState(GameState.Game); // set game state to 'Game'
         Debug.Log("spiel geht weiter");
 
+        rb.rotation = player_rotation; // set player rotation of values before pause 
+        rb.velocity = player_velocity; // set player velocity of values before pause
         rb.isKinematic = false; // player is able to move
 
         disableButtonSpielFortsetzen();
         disableButtonSpielBeenden();
+
+    }
+
+    void pauseGame()
+    {
+        GM.SetGameState(GameState.GamePaused); // set game state to 'Game Paused'
+        Debug.Log("show menu");
+
+        player_rotation = rb.rotation; // save current rotation of palyer
+        player_velocity = rb.velocity; // save current velocity of palyer
+        rb.isKinematic = true; // player is not able to move
+
+        enableButtonSpielFortsetzen();
+        enableButtonSpielBeenden();
     }
 
 
