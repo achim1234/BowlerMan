@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     // player settings
     private Rigidbody rb;
     Vector3 player_velocity;
+    Vector3 player_angular_velocity;
     Quaternion player_rotation;
 
     GameManager GM;
@@ -535,7 +536,8 @@ public class PlayerController : MonoBehaviour {
         GM.SetGameState(GameState.Game); // set game state to 'Game'
         Debug.Log("spiel geht weiter");
 
-        rb.rotation = player_rotation; // set player rotation of values before pause 
+        rb.rotation = player_rotation; // set player rotation of values before pause
+        rb.angularVelocity = player_angular_velocity; // set player angular velocity of values before pause
         rb.velocity = player_velocity; // set player velocity of values before pause
         rb.isKinematic = false; // player is able to move
 
@@ -548,8 +550,9 @@ public class PlayerController : MonoBehaviour {
     {
         GM.SetGameState(GameState.GamePaused); // set game state to 'Game Paused'
         Debug.Log("show menu");
-
+        
         player_rotation = rb.rotation; // save current rotation of palyer
+        player_angular_velocity = rb.angularVelocity; // save angular velocity rotation of palyer
         player_velocity = rb.velocity; // save current velocity of palyer
         rb.isKinematic = true; // player is not able to move
 
