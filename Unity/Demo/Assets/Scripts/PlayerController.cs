@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour {
     // Lebenspunkte kugel
     public float healthPoints = 10000.0f;
 
+    
 
     // timer
     float timer = 0.0f;
@@ -60,6 +61,9 @@ public class PlayerController : MonoBehaviour {
         GM = GameManager.Instance;
         GM.SetGameState(GameState.Countdown);
         GM.SetCurrentSceneName(Application.loadedLevelName);
+
+        // reset gravity to default
+        Physics.gravity = new Vector3(0, -9.81f, 0);
 
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true; // player is not able to move during countdown
@@ -219,6 +223,20 @@ public class PlayerController : MonoBehaviour {
                 setUIHealth();
                 setGameOver();
             }
+        }
+        else
+        {
+            if (collision.gameObject.ToString().Contains("lava"))
+            {
+                Debug.Log("collision object " + collision.gameObject.ToString());
+
+                // change gravity to let player sink slowly in lava
+                Physics.gravity = new Vector3(0, -0.51f, 0);
+
+                // enable trigger - player is falling through lava cube
+                Collider collider = collision.gameObject.GetComponent< Collider>();
+                collider.isTrigger = true;
+            }            
         }
     }
 
