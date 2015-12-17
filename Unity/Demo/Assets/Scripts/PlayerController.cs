@@ -50,7 +50,9 @@ public class PlayerController : MonoBehaviour {
     public Button button_spiel_beenden;
     public Button button_spiel_fortsetzen;
 
-    
+    public Image myPanel;
+    float fadeTime = 5f;
+    Color colorToFadeTo;
 
     void Start ()
     {
@@ -69,7 +71,8 @@ public class PlayerController : MonoBehaviour {
         winUIText.text = "";
         setUpButtons();
 
-        
+        colorToFadeTo = new Color(1f, 1f, 1f, 0f);
+        myPanel.CrossFadeColor(colorToFadeTo, 0.0f, true, true);
 
         // set time for specific level
         if (GM.currentscene == "daniels_level")
@@ -337,6 +340,10 @@ public class PlayerController : MonoBehaviour {
         SoundManager.instance.PlaySingle("game_won"); // Gewonnen-Sound abspielen
         isGameOver = true;
         GM.SetGameState(GameState.FinishedLevel);
+
+        colorToFadeTo = new Color(0f, 0f, 0f, 1f);
+        myPanel.CrossFadeColor(colorToFadeTo, 1.2f, true, true);
+
         setUILevelWinText();
         StartCoroutine(updateTotalScoreAndUI());
         StartCoroutine(loadNextLevel());
@@ -347,6 +354,10 @@ public class PlayerController : MonoBehaviour {
         SoundManager.instance.PlaySingle("game_lose"); // Game-Over Sound abspielen
         isGameOver = true;
         GM.SetGameState(GameState.GameOver);
+
+        colorToFadeTo = new Color(0f, 0f, 0f, 1f);
+        myPanel.CrossFadeColor(colorToFadeTo, 1.2f, true, true);
+
         setUIGameOver();
         StartCoroutine(updateTotalScoreAndUI());
         StartCoroutine(waitForHighscoreScene());
@@ -541,6 +552,8 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = player_velocity; // set player velocity of values before pause
         rb.isKinematic = false; // player is able to move
 
+        colorToFadeTo = new Color(1f, 1f, 1f, 0f);
+        myPanel.CrossFadeColor(colorToFadeTo, 0.30f, true, true);
         disableButtonSpielFortsetzen();
         disableButtonSpielBeenden();
 
@@ -556,6 +569,8 @@ public class PlayerController : MonoBehaviour {
         player_velocity = rb.velocity; // save current velocity of palyer
         rb.isKinematic = true; // player is not able to move
 
+        colorToFadeTo = new Color(0f, 0f, 0f, 1f);
+        myPanel.CrossFadeColor(colorToFadeTo, 1.2f, true, true);
         enableButtonSpielFortsetzen();
         enableButtonSpielBeenden();
     }
