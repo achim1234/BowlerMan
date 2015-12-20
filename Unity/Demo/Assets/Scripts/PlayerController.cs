@@ -31,14 +31,14 @@ public class PlayerController : MonoBehaviour {
 
     // Lebenspunkte kugel
     public float healthPoints = 10000.0f;
-
-    
+    int lifes = 3;
 
     // timer
     float timer = 0.0f;
     float timerMax = 45.0f;
 
     bool isGameOver = false;
+    bool scoreAnimationDone = false;
 
     // UI elements
     public Text countUIText;
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour {
     public Text healthUIText;
     public Text countdownUIText;
     public Text winTotalScoreUIText;
+    public Text gotPointsUIText;
 
     public Button button_spiel_beenden;
     public Button button_spiel_fortsetzen;
@@ -74,6 +75,8 @@ public class PlayerController : MonoBehaviour {
         setUIHealth();
         winUIText.text = "";
         setUpButtons();
+        gotPointsUIText.gameObject.SetActive(false);
+        PostprocessingEffectScript.VignetteAmount = 0f;
 
         colorToFadeTo = new Color(1f, 1f, 1f, 0f);
         myPanel.CrossFadeColor(colorToFadeTo, 0.0f, true, true);
@@ -121,6 +124,26 @@ public class PlayerController : MonoBehaviour {
             }
         }
         setUITimer();
+
+
+        // Spiel ist zu Ende - Spieler moechte Punkteanimation ueberspringen
+        if(GM.gameState == GameState.FinishedLevel || GM.gameState == GameState.GameOver)
+        {
+            // Pause bei druecken von 'Escape' (ausser waehrend Countdown)
+            if (Input.GetKey(KeyCode.Escape) || (Input.GetKey(KeyCode.Return)))
+            {
+                Debug.Log("pressed keys while game over / finished");
+                if (GM.gameState == GameState.GameOver)
+                {
+                    StartCoroutine(waitForHighscoreScene());
+                }
+                if(GM.gameState == GameState.FinishedLevel)
+                {
+                    StartCoroutine(loadNextLevel());
+                }
+                scoreAnimationDone = true;
+            }
+        }
     }
 
 
@@ -196,7 +219,7 @@ public class PlayerController : MonoBehaviour {
         else // game is over
         {
             // slightly slow down player
-            rb.velocity = rb.velocity * 0.985f;
+            rb.velocity = rb.velocity * 0.975f;
         } 
     }
 
@@ -241,6 +264,13 @@ public class PlayerController : MonoBehaviour {
     }
 
 
+    void getPointsAfterPinHitUI()
+    {
+        gotPointsUIText.gameObject.SetActive(true);
+        gotPointsUIText.CrossFadeAlpha(1.0f, 0.03f, false); // fade in
+        gotPointsUIText.CrossFadeAlpha(0.0f, 1.35f, false); // fade to transparent over 1350ms.
+    }
+
 
     void OnTriggerEnter(Collider other)// wird ausgefuehrt, wenn der Spieler mit einem anderen TriggerCollider kollidiert
     {
@@ -256,6 +286,7 @@ public class PlayerController : MonoBehaviour {
             {
                 case "BowlingPin": // player getes points
                     count = count + 10;
+                    getPointsAfterPinHitUI();
                     SetCountText();
                     SoundManager.instance.PlaySingle("pin_hit");
                     break;
@@ -321,6 +352,21 @@ public class PlayerController : MonoBehaviour {
                     // disable pick / power up
                     other.gameObject.SetActive(false);
                     break;
+                case "PowerUp-Time": // add extra time
+                    SoundManager.instance.PlaySingle("power_up");
+                    timer += 10;
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
+                    break;
+                case "PowerUp-Life": // add extra life
+                    SoundManager.instance.PlaySingle("power_up");
+                    if(lifes < 3)
+                    {
+                        lifes++;
+                    }
+                    // disable pick / power up
+                    other.gameObject.SetActive(false);
+                    break;
                 case "Water": // player hits water
                     setGameOver();
                     break;
@@ -360,7 +406,7 @@ public class PlayerController : MonoBehaviour {
         GM.SetGameState(GameState.FinishedLevel);
 
         colorToFadeTo = new Color(0f, 0f, 0f, 1f);
-        myPanel.CrossFadeColor(colorToFadeTo, 1.2f, true, true);
+        myPanel.CrossFadeColor(colorToFadeTo, 1.0f, true, true);
 
         setUILevelWinText();
         StartCoroutine(updateTotalScoreAndUI());
@@ -374,7 +420,7 @@ public class PlayerController : MonoBehaviour {
         GM.SetGameState(GameState.GameOver);
 
         colorToFadeTo = new Color(0f, 0f, 0f, 1f);
-        myPanel.CrossFadeColor(colorToFadeTo, 1.2f, true, true);
+        myPanel.CrossFadeColor(colorToFadeTo, 1.0f, true, true);
 
         setUIGameOver();
         StartCoroutine(updateTotalScoreAndUI());
@@ -455,15 +501,19 @@ public class PlayerController : MonoBehaviour {
         }
 
         // GM.SetTotalScore(count); // update total score in game manager
-
-        yield return new WaitForSeconds(2); // wait for x seconds
+        scoreAnimationDone = true;
+        yield return new WaitForSeconds(3); // wait for x seconds
     }
 
 
 
     IEnumerator loadNextLevel()
     {
-        yield return new WaitForSeconds(11); // wait for x seconds
+        while (!scoreAnimationDone)
+        {
+            yield return new WaitForSeconds(2); // wait for x seconds
+        }
+        yield return new WaitForSeconds(2); // wait for x seconds
 
         GM.SetTotalScore(count); // update total score in game manager
 
@@ -491,7 +541,13 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator waitForHighscoreScene() // wait for x seconds and then load highscore scene
     {
-        yield return new WaitForSeconds(11);
+        while (!scoreAnimationDone)
+        {
+            Debug.Log("waitForHighscoreScene while");
+            yield return new WaitForSeconds(2); // wait for x seconds
+        }
+        yield return new WaitForSeconds(2); // wait for x seconds
+
         GM.SetTotalScore(count); // update total score in game manager
         Application.LoadLevel("test_highscore");
     }
@@ -509,6 +565,8 @@ public class PlayerController : MonoBehaviour {
             if (timer < 10)
             {
                 timerUIText.color = Color.red;
+
+                PostprocessingEffectScript.VignetteAmount = 1f;
             }
         }
         timerUIText.text = "Time: " + timer.ToString("0.00");
@@ -588,7 +646,7 @@ public class PlayerController : MonoBehaviour {
         rb.isKinematic = true; // player is not able to move
 
         colorToFadeTo = new Color(0f, 0f, 0f, 1f);
-        myPanel.CrossFadeColor(colorToFadeTo, 1.2f, true, true);
+        myPanel.CrossFadeColor(colorToFadeTo, 0.6f, true, true);
         enableButtonSpielFortsetzen();
         enableButtonSpielBeenden();
     }

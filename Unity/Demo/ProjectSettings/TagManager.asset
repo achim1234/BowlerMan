@@ -17,6 +17,8 @@ TagManager:
   - BowlingPin
   - BowlingPin-EndLevel
   - player
+  - PowerUp-Time
+  - PowerUp-Life
   layers:
   - Default
   - TransparentFX
