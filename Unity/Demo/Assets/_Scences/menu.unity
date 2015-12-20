@@ -4292,6 +4292,7 @@ GameObject:
   - 65: {fileID: 142425485}
   - 114: {fileID: 142425484}
   - 114: {fileID: 142425483}
+  - 114: {fileID: 142425488}
   m_Layer: 0
   m_Name: level_1
   m_TagString: Untagged
@@ -4382,6 +4383,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 142425481}
   m_Mesh: {fileID: 4300080, guid: 3691b82571a4d6447952732135817f4d, type: 3}
+--- !u!114 &142425488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 142425481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fad06c96e183af41908ba4f3c2ffc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textur: {fileID: 2800000, guid: 56b323f4dc72347428a1be194d65aa96, type: 3}
+  currenttextur: {fileID: 2800000, guid: e6d99e06c12cf74488e3bd09e3e9f598, type: 3}
+  objekt: {fileID: 1475870757}
 --- !u!1 &143993672
 GameObject:
   m_ObjectHideFlags: 0
@@ -8085,6 +8100,7 @@ GameObject:
   - 65: {fileID: 278966392}
   - 114: {fileID: 278966391}
   - 114: {fileID: 278966390}
+  - 114: {fileID: 278966395}
   m_Layer: 0
   m_Name: level_2
   m_TagString: Untagged
@@ -8174,6 +8190,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 278966388}
   m_Mesh: {fileID: 4300080, guid: 3691b82571a4d6447952732135817f4d, type: 3}
+--- !u!114 &278966395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278966388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fad06c96e183af41908ba4f3c2ffc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textur: {fileID: 2800000, guid: 51b73a9a333370649ae76d1607897139, type: 3}
+  currenttextur: {fileID: 2800000, guid: e6d99e06c12cf74488e3bd09e3e9f598, type: 3}
+  objekt: {fileID: 1475870757}
 --- !u!1 &279771721
 GameObject:
   m_ObjectHideFlags: 0
@@ -13861,16 +13891,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61447eb9a1b14a4fa3164e7e0ba7023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 2.99900007
-  tiltAngle_y: 35
-  tiltAngle_x: 8
-  tiltAngle_minus_y: 315
-  tiltAngle_minus_x: -8
+  smooth: 2
+  tiltAngle_y: 33
+  tiltAngle_x: 0
+  tiltAngle_minus_y: 319
+  tiltAngle_minus_x: .0250000004
   tiltAngle_middle_y: 6
   tiltAngle_middle_x: 0
-  bow_down_x: 0
-  bow_down_y: 0
-  bow_down_z: 310
+  bow_down_x: 1.89999998
+  bow_down_y: 5
+  bow_down_z: 333
   bow_up_x: 0
   bow_up_y: 6
   bow_up_z: 359
@@ -25118,12 +25148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3ae81f6c269d44993ec5741f031fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efxSource: {fileID: 804521010}
-  woohoo: {fileID: 8300000, guid: 0dc5172b9545ce74d844856a144b58f3, type: 3}
-  game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
-  game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
-  hit_one_pin: {fileID: 8300000, guid: 7f802b11d3e8fc64eb3e2feeb25dc8c3, type: 3}
-  power_up: {fileID: 8300000, guid: 24654ccfcf1fb77418ae6e76d509cca1, type: 3}
+  efxSource: {fileID: 0}
+  woohoo: {fileID: 0}
+  game_won: {fileID: 0}
+  game_lose: {fileID: 0}
+  hit_one_pin: {fileID: 0}
+  power_up: {fileID: 0}
 --- !u!82 &804521010
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26221,6 +26251,7 @@ GameObject:
   - 65: {fileID: 835812502}
   - 114: {fileID: 835812501}
   - 114: {fileID: 835812500}
+  - 114: {fileID: 835812505}
   m_Layer: 0
   m_Name: level_3 (1)
   m_TagString: Untagged
@@ -26310,6 +26341,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 835812498}
   m_Mesh: {fileID: 4300080, guid: 3691b82571a4d6447952732135817f4d, type: 3}
+--- !u!114 &835812505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 835812498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fad06c96e183af41908ba4f3c2ffc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textur: {fileID: 2800000, guid: 4f64d335c6daef44badd0017420155b2, type: 3}
+  currenttextur: {fileID: 2800000, guid: e6d99e06c12cf74488e3bd09e3e9f598, type: 3}
+  objekt: {fileID: 1475870757}
 --- !u!1 &836344128
 GameObject:
   m_ObjectHideFlags: 0
@@ -62648,7 +62693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d990cb985238e2c4d80886f65791116e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: .400000006
+  speed: .5
   target_z: 2
   target_minus_z: -2
 --- !u!82 &2018650336

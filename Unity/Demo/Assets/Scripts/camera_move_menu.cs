@@ -46,6 +46,7 @@ public class camera_move_menu : MonoBehaviour
         {
             targetreached_right = true;
             targetreached_left = false;
+            
         }
     }
 
