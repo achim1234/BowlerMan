@@ -593,7 +593,10 @@ public class PlayerController : MonoBehaviour {
         {
             healthUIText.color = Color.red;
         }
-        healthUIText.text = "Health: " + health.ToString("0");
+        // healthUIText.text = "Health: " + health.ToString("0");
+        healthUIText.text = "Health:";
+
+        HealthBar.fillAmount = 1;
     }
 
     void setUIGameOver() // UI - shows text if game is over
