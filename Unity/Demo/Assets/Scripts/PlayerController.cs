@@ -232,16 +232,14 @@ public class PlayerController : MonoBehaviour {
     {
         if (!isGameOver)
         {
-            // Debug.Log("collided with: " + collision.gameObject.name);
             isFalling = false;
-
-            //collision.gameObject.GetComponent<Cube>();
 
             if (healthPoints > 0 && collision.gameObject.tag == "CubeObstacle")
             {
-                healthPoints = healthPoints - plyayerSpeed;
+                Debug.Log("collided with: " + collision.gameObject.name);
+                healthPoints = healthPoints - plyayerSpeed*40;
                 setUIHealth();
-               // Debug.Log(healthPoints);
+                Debug.Log(healthPoints);
 
             }
             else if (healthPoints < 0.0f) // no more health -> game over
@@ -596,7 +594,9 @@ public class PlayerController : MonoBehaviour {
         // healthUIText.text = "Health: " + health.ToString("0");
         healthUIText.text = "Health:";
 
-        HealthBar.fillAmount = 1;
+        // health at level start 10000.0f
+        // calc amount between 0 - 1
+        HealthBar.fillAmount = healthPoints * 0.0001f; 
     }
 
     void setUIGameOver() // UI - shows text if game is over
