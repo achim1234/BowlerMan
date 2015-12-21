@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour {
     public AudioClip game_lose;                   //Spiel verlohren
     public AudioClip hit_one_pin;                  //Sound bei Pin treffer
     public AudioClip power_up;                      //Sound der bei einsammeln eines Power Up abgespielt wird
+    public AudioClip obstical_hit;                 // Hinderniss berührt
 
 
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
@@ -67,6 +68,11 @@ public class SoundManager : MonoBehaviour {
             case "power_up":
                 efxSource.clip = power_up;
                 efxSource.Play();
+                break;
+            case "obstical_hit":
+                efxSource.clip = obstical_hit;
+                efxSource.Play();
+                Debug.Log("hiiiiiiiiiiiiiiiit");
                 break;
             /*
             case "stop_music":

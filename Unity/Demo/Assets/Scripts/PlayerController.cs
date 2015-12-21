@@ -237,8 +237,9 @@ public class PlayerController : MonoBehaviour {
             if (healthPoints > 0 && collision.gameObject.tag == "CubeObstacle")
             {
                 Debug.Log("collided with: " + collision.gameObject.name);
-                healthPoints = healthPoints - plyayerSpeed*40;
+                healthPoints = healthPoints - 10;
                 setUIHealth();
+                SoundManager.instance.PlaySingle("obstical_hit");
                 Debug.Log(healthPoints);
 
             }
@@ -294,6 +295,7 @@ public class PlayerController : MonoBehaviour {
                     SoundManager.instance.PlaySingle("pin_hit");
                     break;
                 case "BowlingPin-EndLevel": // player finished level
+                    SoundManager.instance.PlaySingle("pin_hit");
                     count += (int)count * ((int)timer / 2); // bonus points for left time
                     count = count + 100; // add 100 extra points
                     SetCountText();

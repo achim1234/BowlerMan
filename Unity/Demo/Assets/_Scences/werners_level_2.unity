@@ -4991,6 +4991,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.11543834
       objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
   m_IsPrefabParent: 0
@@ -6947,7 +6951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &346361900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8159,6 +8163,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.11543834
       objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
   m_IsPrefabParent: 0
@@ -8263,6 +8271,7 @@ MonoBehaviour:
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
   hit_one_pin: {fileID: 8300000, guid: 7f802b11d3e8fc64eb3e2feeb25dc8c3, type: 3}
   power_up: {fileID: 8300000, guid: 24654ccfcf1fb77418ae6e76d509cca1, type: 3}
+  obstical_hit: {fileID: 8300000, guid: b608c34d3008eec4496f1d8b3b231842, type: 3}
 --- !u!82 &409034698
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9931,7 +9940,7 @@ GameObject:
   - 114: {fileID: 485107944}
   m_Layer: 0
   m_Name: Sphere (2)
-  m_TagString: Untagged
+  m_TagString: CubeObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10020,7 +10029,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8.50600719
+  m_Radius: .504607677
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &485107949
 MeshFilter:
@@ -11210,6 +11219,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.11543834
       objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
   m_IsPrefabParent: 0
@@ -11813,7 +11826,7 @@ GameObject:
   - 114: {fileID: 581416919}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: CubeObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11852,7 +11865,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8.50600719
+  m_Radius: .518403113
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &581416916
 MeshFilter:
@@ -14080,7 +14093,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448826, guid: fbba5a78058940549ab663fd2cd9c645, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11407254, guid: fbba5a78058940549ab663fd2cd9c645, type: 2}
       propertyPath: healthUIText
@@ -16040,6 +16053,30 @@ Prefab:
     - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
       propertyPath: m_Name
       value: obelisk (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.y
+      value: 2.65579438
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.y
+      value: -.144287854
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.z
+      value: 6.10278416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.x
+      value: 2.55729604
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.x
+      value: -.125152588
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_TagString
+      value: CubeObstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
@@ -21017,6 +21054,10 @@ Prefab:
     - target: {fileID: 486918, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
       propertyPath: m_LocalScale.z
       value: 1.11543834
+      objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
@@ -27931,6 +27972,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.11543834
       objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
   m_IsPrefabParent: 0
@@ -28549,6 +28594,10 @@ Prefab:
     - target: {fileID: 486918, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
       propertyPath: m_LocalScale.z
       value: 1.11543834
+      objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
@@ -31602,7 +31651,7 @@ GameObject:
   - 114: {fileID: 1543310593}
   m_Layer: 0
   m_Name: Sphere (3)
-  m_TagString: Untagged
+  m_TagString: CubeObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31691,7 +31740,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8.50600719
+  m_Radius: .516717732
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1543310598
 MeshFilter:
@@ -31758,6 +31807,10 @@ Prefab:
     - target: {fileID: 486918, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
       propertyPath: m_LocalScale.z
       value: 1.11543834
+      objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
@@ -32068,6 +32121,10 @@ Prefab:
     - target: {fileID: 486918, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
       propertyPath: m_LocalScale.z
       value: 1.11543834
+      objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
@@ -35979,6 +36036,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.11543834
       objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
   m_IsPrefabParent: 0
@@ -36539,6 +36600,30 @@ Prefab:
       propertyPath: m_Name
       value: obelisk (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.y
+      value: 3.05648351
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.y
+      value: -.0920417532
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.z
+      value: 6.10278416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.x
+      value: 3.48893237
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.x
+      value: .208770752
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_TagString
+      value: CubeObstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
   m_IsPrefabParent: 0
@@ -36848,7 +36933,7 @@ GameObject:
   - 114: {fileID: 1731489539}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: CubeObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36925,7 +37010,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8.50600719
+  m_Radius: .503127456
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1731489544
 MeshFilter:
@@ -37066,6 +37151,10 @@ Prefab:
     - target: {fileID: 486918, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
       propertyPath: m_LocalScale.z
       value: 1.11543834
+      objectReference: {fileID: 0}
+    - target: {fileID: 128322, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
+      propertyPath: m_TagString
+      value: BowlingPin-EndLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21901f1c9037e244ba05037682fb2fca, type: 2}
@@ -38321,6 +38410,30 @@ Prefab:
     - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
       propertyPath: m_Name
       value: obelisk (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.x
+      value: 3.17390966
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.x
+      value: -.000671386719
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.y
+      value: -.111573011
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.z
+      value: 6.10278416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.y
+      value: 3.32348657
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_TagString
+      value: CubeObstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
@@ -44072,6 +44185,30 @@ Prefab:
       propertyPath: m_Name
       value: obelisk (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.x
+      value: 2.78055573
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.x
+      value: .0465087891
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.y
+      value: -.253906995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.z
+      value: 6.10278416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.y
+      value: 3.64137173
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_TagString
+      value: CubeObstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
   m_IsPrefabParent: 0
@@ -44721,6 +44858,30 @@ Prefab:
     - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
       propertyPath: m_Name
       value: obelisk (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.x
+      value: 3.37929392
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.x
+      value: -.0453796387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.y
+      value: .14282155
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.z
+      value: 6.10278416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.y
+      value: 3.29952979
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_TagString
+      value: CubeObstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
@@ -45383,6 +45544,30 @@ Prefab:
     - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.y
+      value: 3.55465889
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.y
+      value: .0681145117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.z
+      value: 6.10278416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Size.x
+      value: 3.24066401
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_Center.x
+      value: -.0896606445
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
+      propertyPath: m_TagString
+      value: CubeObstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c45b6cf92d0a614a9ff803ca6454a56, type: 2}
