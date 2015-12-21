@@ -3,8 +3,10 @@ using System.Collections;
 
 public class level_2 : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    GameManager GM;
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -16,6 +18,7 @@ public class level_2 : MonoBehaviour {
     void OnMouseUp()
     {
         SoundManager.instance.PlaySingle("stop_music");
+        GM.SetGameMode(GameMode.SingleGame);
         Application.LoadLevel("daniels_level");
     }
 }

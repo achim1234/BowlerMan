@@ -12,10 +12,10 @@ public class GameManagerTest : MonoBehaviour
 
     void Awake()
     {
-
         GM = GameManager.Instance;
         GM.OnStateChange += HandleOnStateChange;
 
+        Debug.Log("Current game mode when Awakes: " + GM.gameMode);
         Debug.Log("Current game state when Awakes: " + GM.gameState);
 
         GM.SetGameState(GameState.Intro);
@@ -23,6 +23,7 @@ public class GameManagerTest : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Current game mode when Starts: " + GM.gameMode);
         Debug.Log("Current game state when Starts: " + GM.gameState);
     }
 

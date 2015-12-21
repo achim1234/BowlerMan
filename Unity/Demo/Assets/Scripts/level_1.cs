@@ -3,8 +3,10 @@ using System.Collections;
 
 public class level_1 : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    GameManager GM;
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -16,6 +18,7 @@ public class level_1 : MonoBehaviour {
     void OnMouseUp()
     {
         SoundManager.instance.PlaySingle("stop_music");
+        GM.SetGameMode(GameMode.SingleGame);
         Application.LoadLevel("achims_level_2");
     }
 }

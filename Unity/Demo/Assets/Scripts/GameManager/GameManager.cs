@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public enum GameState { NullState, Intro, MainMenu, Loading, Countdown, Game, GamePaused, FinishedLevel, HighScore, GameOver }
+public enum GameMode { NullState, SingleGame, Campaign }
 public delegate void OnStateChangeHandler();
 
 /**
@@ -15,6 +16,7 @@ public class GameManager
     public event OnStateChangeHandler OnStateChange;
 
     public GameState gameState { get; private set; }
+    public GameMode gameMode { get; private set; }
     public int totalscore { get; set; }
     public string currentscene { get; set; }
 
@@ -41,6 +43,15 @@ public class GameManager
     public void SetGameState(GameState gameState)
     {
         this.gameState = gameState;
+        if (OnStateChange != null)
+        {
+            OnStateChange();
+        }
+    }
+
+    public void SetGameMode(GameMode gameMode)
+    {
+        this.gameMode = gameMode;
         if (OnStateChange != null)
         {
             OnStateChange();

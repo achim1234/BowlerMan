@@ -92,6 +92,11 @@ public class PlayerController : MonoBehaviour {
 	        timerMax = 200.0f;
 	        timer = timerMax;
         }
+        else if (GM.currentscene == "werners_level_2")
+        {
+            timerMax = 60.0f;
+            timer = timerMax;
+        }
         else
         {
             timer = timerMax;
@@ -515,25 +520,31 @@ public class PlayerController : MonoBehaviour {
         }
         yield return new WaitForSeconds(2); // wait for x seconds
 
-        GM.SetTotalScore(count); // update total score in game manager
-
-        string currentscene = GM.currentscene; // get name of current scene
-
-        switch (currentscene)
+        // game mode campaign
+        if(GM.gameMode == GameMode.Campaign)
         {
-            case "achims_level":
-                Application.LoadLevel("daniels_level");
-                break;
-            case "daniels_level":
-                Application.LoadLevel("werners_level");
-                break;
-            case "werners_level":
-                Application.LoadLevel("test_highscore");
-                // Application.LoadLevel("highscore"); // highscore not implemented yet
-                break;
-            default:
-                Application.LoadLevel("menu");
-                break;
+            GM.SetTotalScore(count); // update total score in game manager
+            string currentscene = GM.currentscene; // get name of current scene
+            switch (currentscene) // load next level depending on current level
+            {
+                case "achims_level":
+                    Application.LoadLevel("daniels_level");
+                    break;
+                case "daniels_level":
+                    Application.LoadLevel("werners_level");
+                    break;
+                case "werners_level":
+                    Application.LoadLevel("test_highscore");
+                    break;
+                default:
+                    Application.LoadLevel("menu");
+                    break;
+            }
+        }
+        else
+        {
+            // singel game - go back to main menu
+            Application.LoadLevel("menu");
         }
     }
 
@@ -566,7 +577,10 @@ public class PlayerController : MonoBehaviour {
             {
                 timerUIText.color = Color.red;
 
-                PostprocessingEffectScript.VignetteAmount = 1f;
+                if (timer >= 1)
+                {
+                    PostprocessingEffectScript.VignetteAmount = 1 / timer;
+                }
             }
         }
         timerUIText.text = "Time: " + timer.ToString("0.00");
