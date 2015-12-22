@@ -12,7 +12,11 @@ public class PostprocessingEffectScript : MonoBehaviour
 	[Range(0, 1)]
 	public static float VignetteAmount = 0f;
 
-	[Header("Values for some Screen Settings")]
+    public Texture RedVignetteTexture;
+    [Range(0, 1)]
+    public static float RedVignetteAmount = 0f;
+
+    [Header("Values for some Screen Settings")]
 	[Range(0,2)]
 	public float BrightnessAmount = 1f;
 	[Range(0,3)]
@@ -85,7 +89,10 @@ public class PostprocessingEffectScript : MonoBehaviour
 			ShaderMaterial.SetTexture("_VignetteTexture", VignetteTexture);
 			ShaderMaterial.SetFloat("_VignetteAmount", VignetteAmount);
 
-			Graphics.Blit(sourceTexture, destTexture, ShaderMaterial);
+            ShaderMaterial.SetTexture("_RedVignetteTexture", RedVignetteTexture);
+            ShaderMaterial.SetFloat("_RedVignetteAmount", RedVignetteAmount);
+
+            Graphics.Blit(sourceTexture, destTexture, ShaderMaterial);
 		}
 		else
 		{

@@ -149,6 +149,14 @@ public class PlayerController : MonoBehaviour {
                 scoreAnimationDone = true;
             }
         }
+
+        /*
+        // reset slighty red vignette
+        if(PostprocessingEffectScript.RedVignetteAmount > 0)
+        {
+            PostprocessingEffectScript.RedVignetteAmount -= 0.01f;
+        }
+        */
     }
 
 
@@ -236,11 +244,10 @@ public class PlayerController : MonoBehaviour {
 
             if (healthPoints > 0 && collision.gameObject.tag == "CubeObstacle")
             {
-                Debug.Log("collided with: " + collision.gameObject.name);
                 healthPoints = healthPoints - 10;
                 setUIHealth();
                 SoundManager.instance.PlaySingle("obstical_hit");
-                Debug.Log(healthPoints);
+                // Debug.Log(healthPoints);
 
             }
             else if (healthPoints < 0.0f) // no more health -> game over
@@ -598,7 +605,9 @@ public class PlayerController : MonoBehaviour {
 
         // health at level start 10000.0f
         // calc amount between 0 - 1
-        HealthBar.fillAmount = healthPoints * 0.0001f; 
+        HealthBar.fillAmount = healthPoints * 0.0001f;
+
+        PostprocessingEffectScript.RedVignetteAmount = 1; // not working yet - screnn gets not red
     }
 
     void setUIGameOver() // UI - shows text if game is over

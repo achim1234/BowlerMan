@@ -9,6 +9,8 @@
 		_BlurFactor ("Blur Factor", Range(0,1)) = 0
 		_VignetteTexture ("Vignette Texture", 2D) = "white" {}
 		_VignetteAmount("VignetteAmount", Range(0,1)) = 0
+		_RedVignetteTexture("Red Vignette Texture", 2D) = "white" {}
+		_RedVignetteAmount("Red VignetteAmount", Range(0,1)) = 0
 	}
 	SubShader 
 	{
@@ -28,6 +30,8 @@
 			uniform fixed _BlurFactor;
 			uniform sampler2D _VignetteTexture;
 			uniform fixed _VignetteAmount;
+			uniform sampler2D _RedVignetteTexture;
+			uniform fixed _RedVignetteAmount;
 
 			fixed4 frag(v2f_img i) : COLOR
 			{
@@ -59,8 +63,11 @@
 				float2 dist = (i.uv - 0.5f) * 1.25f;
 				dist.x = 1 - dot(dist, dist)  * _VignetteAmount;
 				renderTex *= dist.x;
-
-
+				/*
+				float dist = (i.uv - 0.5f) * 1.25f;
+				dist.x = 1 - dot(dist, dist)  * _RedVignetteAmount;
+				renderTex *= dist.x;
+				*/
 				/*
 				renderTex += tex2D(_MainTex, i.uv + 0.001);
 				renderTex += tex2D(_MainTex, i.uv + 0.003);
