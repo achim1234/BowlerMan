@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-
+    public Camera _camera;
 
     // is ran before performing any physics calculation
     void FixedUpdate()
