@@ -403,7 +403,7 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(1);
         countdownUIText.text = "1";
         yield return new WaitForSeconds(1);
-        countdownUIText.text = "Go";
+        countdownUIText.text = "Go !";
         GM.SetGameState(GameState.Game); // set game state to 'Game'
         rb.isKinematic = false; // player is able to move
         yield return new WaitForSeconds(1.5f); // 'Go' is displayed for 1.5 seconds
@@ -426,10 +426,29 @@ public class PlayerController : MonoBehaviour {
         colorToFadeTo = new Color(0f, 0f, 0f, 1f);
         myPanel.CrossFadeColor(colorToFadeTo, 1.0f, true, true);
 
+        if(GM.gameMode == GameMode.Campaign)
+        {
+            unlockLevel();
+        }
+
         setUILevelWinText();
         StartCoroutine(updateTotalScoreAndUI());
         StartCoroutine(loadNextLevel());
     }
+
+
+    private void unlockLevel()
+    {
+        if(GM.currentscene == "daniels_level")
+        {
+            PlayerPrefs.SetInt("unlocked_level_2", 1);
+        }
+        else if (GM.currentscene == "werners_level")
+        {
+            PlayerPrefs.SetInt("unlocked_level_3", 1);
+        }
+    }
+
 
     void setGameOver() // level / game lost
     {
@@ -534,19 +553,19 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(2); // wait for x seconds
 
         // game mode campaign
-        if(GM.gameMode == GameMode.Campaign)
+        if (GM.gameMode == GameMode.Campaign)
         {
             GM.SetTotalScore(count); // update total score in game manager
             string currentscene = GM.currentscene; // get name of current scene
             switch (currentscene) // load next level depending on current level
             {
-                case "achims_level":
+                case "achims_level_2":
                     Application.LoadLevel("daniels_level");
                     break;
                 case "daniels_level":
-                    Application.LoadLevel("werners_level");
+                    Application.LoadLevel("werners_level_2");
                     break;
-                case "werners_level":
+                case "werners_level_2":
                     Application.LoadLevel("test_highscore");
                     break;
                 default:
@@ -556,7 +575,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            // singel game - go back to main menu
+            // single game - go back to main menu
             Application.LoadLevel("menu");
         }
     }
@@ -573,7 +592,17 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(2); // wait for x seconds
 
         GM.SetTotalScore(count); // update total score in game manager
-        Application.LoadLevel("test_highscore");
+
+        // game mode campaign
+        if (GM.gameMode == GameMode.Campaign)
+        {
+            Application.LoadLevel("test_highscore");
+        }
+        else
+        {
+            // single game - go back to main menu
+            Application.LoadLevel("menu");
+        }
     }
 
 

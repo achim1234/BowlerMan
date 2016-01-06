@@ -22377,7 +22377,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22447330, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: 22447330, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
       propertyPath: m_AnchorMin.x
@@ -22406,6 +22406,27 @@ Prefab:
     - target: {fileID: 118858, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
       propertyPath: m_Name
       value: UITextCountdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474852, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f0aebcb9d0f29cd43b5fc2dc04d3dad9,
+        type: 3}
+    - target: {fileID: 11474852, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474852, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474852, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474852, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b088861712b6734b9a09f4375b4ede0, type: 2}

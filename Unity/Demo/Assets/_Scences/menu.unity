@@ -7851,6 +7851,8 @@ MonoBehaviour:
   verschiebung_z: 88
   objekt: {fileID: 675757594}
   mausklick: 0
+  level2: {fileID: 278966388}
+  level3: {fileID: 835812498}
 --- !u!1 &265999528
 GameObject:
   m_ObjectHideFlags: 0
@@ -9302,6 +9304,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 748cb6357d45490489c7c7abc45ac21a, type: 2}
+    - target: {fileID: 100004, guid: be0fa5f6abb9da746bf8ddb68bbb8137, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be0fa5f6abb9da746bf8ddb68bbb8137, type: 3}
   m_IsPrefabParent: 0
@@ -25418,13 +25424,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3ae81f6c269d44993ec5741f031fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efxSource: {fileID: 0}
-  woohoo: {fileID: 0}
-  game_won: {fileID: 0}
-  game_lose: {fileID: 0}
-  hit_one_pin: {fileID: 0}
-  power_up: {fileID: 0}
-  obstical_hit: {fileID: 0}
+  efxSource: {fileID: 804521010}
+  woohoo: {fileID: 8300000, guid: 0dc5172b9545ce74d844856a144b58f3, type: 3}
+  game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
+  game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
+  hit_one_pin: {fileID: 8300000, guid: 7f802b11d3e8fc64eb3e2feeb25dc8c3, type: 3}
+  power_up: {fileID: 8300000, guid: 24654ccfcf1fb77418ae6e76d509cca1, type: 3}
+  obstical_hit: {fileID: 8300000, guid: b608c34d3008eec4496f1d8b3b231842, type: 3}
 --- !u!82 &804521010
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27862,6 +27868,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1833be978813854449c30b15559ca110, type: 2}
+    - target: {fileID: 100000, guid: 9580d586e3c94e74492199c78c2b2f68, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9580d586e3c94e74492199c78c2b2f68, type: 3}
   m_IsPrefabParent: 0
@@ -39079,6 +39089,8 @@ MonoBehaviour:
   verschiebung_z: -88
   objekt: {fileID: 675757594}
   mausklick: 0
+  level2: {fileID: 278966388}
+  level3: {fileID: 835812498}
 --- !u!65 &1240934800
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41126,6 +41138,10 @@ Prefab:
     - target: {fileID: 100000, guid: 9580d586e3c94e74492199c78c2b2f68, type: 3}
       propertyPath: m_Name
       value: bowglingbahn_bandefbx (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9580d586e3c94e74492199c78c2b2f68, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9580d586e3c94e74492199c78c2b2f68, type: 3}

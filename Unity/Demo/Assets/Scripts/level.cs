@@ -13,6 +13,10 @@ public class level : MonoBehaviour {
     public bool mausklick = false;
 
 
+    public GameObject level2;
+    public GameObject level3;
+
+
     void FixedUpdate()
     {
         if (mausklick)
@@ -35,6 +39,28 @@ public class level : MonoBehaviour {
     void Start()
     {
         target = objekt.transform.position + new Vector3(0, 0, verschiebung_z);
+
+        
+        // verify if level 2 is unlocked
+        if (PlayerPrefs.GetInt("unlocked_level_2")  == 1)
+        {
+            level2.SetActive(true);
+        }
+        else
+        {
+            level2.SetActive(false);
+        }
+
+        // verify if level 2 is unlocked
+        if (PlayerPrefs.GetInt("unlocked_level_3") == 1)
+        {
+            level3.SetActive(true);
+        }
+        else
+        {
+            level3.SetActive(false);
+        }
+
 
     }
 
