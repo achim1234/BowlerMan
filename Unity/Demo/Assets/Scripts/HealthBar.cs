@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class HealthBar : MonoBehaviour {
+    
+    public Image image; // health bar image
 
-    public Image image;
+    private Color orange = new Color(255,105,0);
 
-    public static float fillAmount = 1;
+    public static float fillAmount = 1; // full health = full fillAmount of image
 
     // https://www.youtube.com/watch?v=y3OZXMxsrUI
 
@@ -25,7 +27,7 @@ public class HealthBar : MonoBehaviour {
         }
         else if(fillAmount < 0.5f && fillAmount > 0.2f)
         {
-            image.color = Color.blue;
+            image.color = orange;
         }
         else
         {

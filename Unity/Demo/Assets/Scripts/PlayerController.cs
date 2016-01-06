@@ -30,8 +30,9 @@ public class PlayerController : MonoBehaviour {
     private int count; // counter - how much pick ups were picked
 
     // Lebenspunkte kugel
-    public float healthPoints = 10000.0f;
+    public float healthPoints = 100.0f;
     int lifes = 3;
+    private bool damageVignetteIsSet = false;
 
     // timer
     float timer = 0.0f;
@@ -128,11 +129,18 @@ public class PlayerController : MonoBehaviour {
 				Application.LoadLevel("menu");
             }
         }
+
+
         setUITimer();
+
+        if (damageVignetteIsSet)
+        {
+            setUIDamageVignette();
+        }
 
 
         // Spiel ist zu Ende - Spieler moechte Punkteanimation ueberspringen
-        if(GM.gameState == GameState.FinishedLevel || GM.gameState == GameState.GameOver)
+        if (GM.gameState == GameState.FinishedLevel || GM.gameState == GameState.GameOver)
         {
             // Pause bei druecken von 'Escape' (ausser waehrend Countdown)
             if (Input.GetKey(KeyCode.Escape) || (Input.GetKey(KeyCode.Return)))
@@ -244,13 +252,18 @@ public class PlayerController : MonoBehaviour {
 
             if (healthPoints > 0 && collision.gameObject.tag == "CubeObstacle")
             {
-                healthPoints = healthPoints - 10;
-                setUIHealth();
+                healthPoints = healthPoints - 10; // calc new health points
+
+                setUIHealth(); // update UI health text
+
+                damageVignetteIsSet = false; // restet damage vignette values - vignette is "full" again
+                setUIDamageVignette(); // show vignette
+
                 SoundManager.instance.PlaySingle("obstical_hit");
-                // Debug.Log(healthPoints);
+                Debug.Log("Health: " + healthPoints);
 
             }
-            else if (healthPoints < 0.0f) // no more health -> game over
+            else if (healthPoints <= 0.0f) // no more health -> game over
             {
                 Debug.Log("Game Over! Keine Lebenspunkte mehr!");
                 healthPoints = 0;
@@ -274,13 +287,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-
-    void getPointsAfterPinHitUI()
-    {
-        gotPointsUIText.gameObject.SetActive(true);
-        gotPointsUIText.CrossFadeAlpha(1.0f, 0.03f, false); // fade in
-        gotPointsUIText.CrossFadeAlpha(0.0f, 1.35f, false); // fade to transparent over 1350ms.
-    }
 
 
     void OnTriggerEnter(Collider other)// wird ausgefuehrt, wenn der Spieler mit einem anderen TriggerCollider kollidiert
@@ -572,6 +578,33 @@ public class PlayerController : MonoBehaviour {
 
 
 
+    void setUIDamageVignette()
+    {
+        if (damageVignetteIsSet)
+        {
+            if (PostprocessingEffectScript.VignetteAmount >= 0.015f)
+            {
+                PostprocessingEffectScript.VignetteAmount -= 0.015f; // slightly remove vignette on each update / frame
+            }
+            else
+            {
+                damageVignetteIsSet = false;
+            }
+        }
+        else
+        {
+            PostprocessingEffectScript.VignetteAmount = 1;
+            damageVignetteIsSet = true;
+        }
+    }
+
+    void getPointsAfterPinHitUI()
+    {
+        gotPointsUIText.gameObject.SetActive(true);
+        gotPointsUIText.CrossFadeAlpha(1.0f, 0.03f, false); // fade in
+        gotPointsUIText.CrossFadeAlpha(0.0f, 1.35f, false); // fade to transparent over 1350ms.
+    }
+
 
 
     void setUITimer() // UI time
@@ -595,17 +628,17 @@ public class PlayerController : MonoBehaviour {
 
     void setUIHealth() // UI health
     {
-        int health = (int)((healthPoints / 50) * 100);
-        if(health <= 10)
+        //int health = (int)((healthPoints / 50) * 100);
+        if(healthPoints <= 10f)
         {
             healthUIText.color = Color.red;
         }
         // healthUIText.text = "Health: " + health.ToString("0");
         healthUIText.text = "Health:";
 
-        // health at level start 10000.0f
+        // health at level start 100.0f
         // calc amount between 0 - 1
-        HealthBar.fillAmount = healthPoints * 0.0001f;
+        HealthBar.fillAmount = healthPoints * 0.01f;
 
         PostprocessingEffectScript.RedVignetteAmount = 1; // not working yet - screnn gets not red
     }
