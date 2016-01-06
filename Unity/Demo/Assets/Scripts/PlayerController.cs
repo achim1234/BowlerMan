@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     GameObject RawImage1;
     GameObject RawImage2;
     GameObject RawImage3;
+    private bool blinky_lives = false;
 
 
     // timer
@@ -151,30 +152,33 @@ public class PlayerController : MonoBehaviour {
 
         if(GM.gameMode == GameMode.Campaign)
         {
-            switch (GM.lives)
+            if (!blinky_lives)
             {
-                case 0:
-                    RawImage1.SetActive(false);
-                    RawImage2.SetActive(false);
-                    RawImage3.SetActive(false);
-                    break;
-                case 1:
-                    RawImage1.SetActive(true);
-                    RawImage2.SetActive(false);
-                    RawImage3.SetActive(false);
-                    break;
-                case 2:
-                    RawImage1.SetActive(true);
-                    RawImage2.SetActive(true);
-                    RawImage3.SetActive(false);
-                    break;
-                case 3:
-                    RawImage1.SetActive(true);
-                    RawImage2.SetActive(true);
-                    RawImage3.SetActive(true);
-                    break;
-                default:
-                    break;
+                switch (GM.lives)
+                {
+                    case 0:
+                        RawImage1.SetActive(false);
+                        RawImage2.SetActive(false);
+                        RawImage3.SetActive(false);
+                        break;
+                    case 1:
+                        RawImage1.SetActive(true);
+                        RawImage2.SetActive(false);
+                        RawImage3.SetActive(false);
+                        break;
+                    case 2:
+                        RawImage1.SetActive(true);
+                        RawImage2.SetActive(true);
+                        RawImage3.SetActive(false);
+                        break;
+                    case 3:
+                        RawImage1.SetActive(true);
+                        RawImage2.SetActive(true);
+                        RawImage3.SetActive(true);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         else
@@ -508,18 +512,19 @@ public class PlayerController : MonoBehaviour {
 
         if(GM.gameMode == GameMode.Campaign)
         {
-            GM.lives--;
+            GM.lives--; // reduce live count
+            StartCoroutine(setBlinkyLives()); // set hearts / lives to 'blink mode'
             if (GM.lives >= 1)
             {
-                StartCoroutine(reloadLevel());
+                StartCoroutine(reloadLevel()); // player still has lives - reload level
             }
-            else
+            else // player has no more lives - load highscore
             {
                 StartCoroutine(updateTotalScoreAndUI());
                 StartCoroutine(waitForHighscoreScene());
             }
         }
-        else
+        else // no campaign - single game
         {
             StartCoroutine(updateTotalScoreAndUI());
             StartCoroutine(waitForHighscoreScene());
@@ -527,10 +532,61 @@ public class PlayerController : MonoBehaviour {
     }
 
 
+    IEnumerator setBlinkyLives()
+    {
+        blinky_lives = true;
+
+        for(int i = 0; i <= 10; i++)
+        {
+            if(GM.lives == 2)
+            {
+                if(i % 2 == 0)
+                {
+                    RawImage2.SetActive(true);
+                    RawImage3.SetActive(false);
+                }
+                else
+                {
+                    RawImage2.SetActive(true);
+                    RawImage3.SetActive(true);
+                }
+            }
+
+            if (GM.lives == 1)
+            {
+                if (i % 2 == 0)
+                {
+                    RawImage1.SetActive(true);
+                    RawImage2.SetActive(false);
+                }
+                else
+                {
+                    RawImage1.SetActive(true);
+                    RawImage2.SetActive(true);
+                }
+            }
+
+            if (GM.lives == 0)
+            {
+                if (i % 2 == 0)
+                {
+                    RawImage1.SetActive(false);
+                }
+                else
+                {
+                    RawImage1.SetActive(true);
+                }
+            }
+
+            yield return new WaitForSeconds(0.5f); // wait for x seconds
+        }
+    }
+
+
     IEnumerator reloadLevel() // wait for x seconds and then load highscore scene
     {
 
-        yield return new WaitForSeconds(5); // wait for x seconds
+        yield return new WaitForSeconds(8); // wait for x seconds
 
         Application.LoadLevel(GM.currentscene); // reload current level
         
@@ -661,7 +717,7 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("waitForHighscoreScene while");
             yield return new WaitForSeconds(2); // wait for x seconds
         }
-        yield return new WaitForSeconds(2); // wait for x seconds
+        yield return new WaitForSeconds(3); // wait for x seconds
 
         GM.SetTotalScore(count); // update total score in game manager
 
