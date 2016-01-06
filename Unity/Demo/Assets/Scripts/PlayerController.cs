@@ -437,6 +437,30 @@ public class PlayerController : MonoBehaviour {
                 case "Water": // player hits water
                     setGameOver();
                     break;
+                case "Fire":
+
+                    if (healthPoints > 0)
+                    {
+                        healthPoints = healthPoints - 10; // calc new health points
+
+                        setUIHealth(); // update UI health text
+
+                        damageVignetteIsSet = false; // restet damage vignette values - vignette is "full" again
+                        setUIDamageVignette(); // show vignette
+
+                        SoundManager.instance.PlaySingle("obstical_hit");
+                        Debug.Log("Health: " + healthPoints);
+
+                    }
+                    else if (healthPoints <= 0.0f) // no more health -> game over
+                    {
+                        Debug.Log("Game Over! Keine Lebenspunkte mehr!");
+                        healthPoints = 0;
+                        setUIHealth();
+                        setGameOver();
+                    }
+
+                    break;
                 default:
                     break;
             }
