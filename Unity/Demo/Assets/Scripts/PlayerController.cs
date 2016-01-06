@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour {
         {
             isFalling = false;
 
-            if (healthPoints > 0 && collision.gameObject.tag == "CubeObstacle")
+            if (healthPoints > 0 && (collision.gameObject.tag == "CubeObstacle") || collision.gameObject.tag == "Fire")
             {
                 healthPoints = healthPoints - 10; // calc new health points
 

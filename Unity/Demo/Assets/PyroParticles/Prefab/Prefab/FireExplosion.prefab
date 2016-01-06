@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11450062}
   m_Layer: 8
   m_Name: FireExplosion
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,7 +253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Seed: 0
   IntensityModifier: 2
-  IntensityMaxRange: {x: 0, y: 8}
+  IntensityMaxRange:
+    Minimum: 0
+    Maximum: 8
 --- !u!198 &19834194
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -2328,7 +2330,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Fire
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131164}
