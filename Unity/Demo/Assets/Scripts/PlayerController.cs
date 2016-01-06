@@ -31,8 +31,13 @@ public class PlayerController : MonoBehaviour {
 
     // Lebenspunkte kugel
     public float healthPoints = 100.0f;
-    int lifes = 3;
+
     private bool damageVignetteIsSet = false;
+
+    GameObject RawImage1;
+    GameObject RawImage2;
+    GameObject RawImage3;
+
 
     // timer
     float timer = 0.0f;
@@ -56,6 +61,8 @@ public class PlayerController : MonoBehaviour {
     public Image myPanel;
     float fadeTime = 5f;
     Color colorToFadeTo;
+
+    public GameObject uiLives;
 
     void Start ()
     {
@@ -81,6 +88,10 @@ public class PlayerController : MonoBehaviour {
 
         colorToFadeTo = new Color(1f, 1f, 1f, 0f);
         myPanel.CrossFadeColor(colorToFadeTo, 0.0f, true, true);
+
+        RawImage1 = GameObject.Find("RawImage1");
+        RawImage2 = GameObject.Find("RawImage2");
+        RawImage3 = GameObject.Find("RawImage3");
 
         // set time for specific level
         if (GM.currentscene == "daniels_level")
@@ -137,6 +148,40 @@ public class PlayerController : MonoBehaviour {
         {
             setUIDamageVignette();
         }
+
+        if(GM.gameMode == GameMode.Campaign)
+        {
+            switch (GM.lives)
+            {
+                case 0:
+                    RawImage1.SetActive(false);
+                    RawImage2.SetActive(false);
+                    RawImage3.SetActive(false);
+                    break;
+                case 1:
+                    RawImage1.SetActive(true);
+                    RawImage2.SetActive(false);
+                    RawImage3.SetActive(false);
+                    break;
+                case 2:
+                    RawImage1.SetActive(true);
+                    RawImage2.SetActive(true);
+                    RawImage3.SetActive(false);
+                    break;
+                case 3:
+                    RawImage1.SetActive(true);
+                    RawImage2.SetActive(true);
+                    RawImage3.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            uiLives.SetActive(false);
+        }
+
 
 
         // Spiel ist zu Ende - Spieler moechte Punkteanimation ueberspringen
@@ -378,9 +423,9 @@ public class PlayerController : MonoBehaviour {
                     break;
                 case "PowerUp-Life": // add extra life
                     SoundManager.instance.PlaySingle("power_up");
-                    if(lifes < 3)
+                    if(GM.lives < 3)
                     {
-                        lifes++;
+                        GM.SetLives (GM.lives + 1);
                     }
                     // disable pick / power up
                     other.gameObject.SetActive(false);
@@ -460,8 +505,35 @@ public class PlayerController : MonoBehaviour {
         myPanel.CrossFadeColor(colorToFadeTo, 1.0f, true, true);
 
         setUIGameOver();
-        StartCoroutine(updateTotalScoreAndUI());
-        StartCoroutine(waitForHighscoreScene());
+
+        if(GM.gameMode == GameMode.Campaign)
+        {
+            GM.lives--;
+            if (GM.lives >= 1)
+            {
+                StartCoroutine(reloadLevel());
+            }
+            else
+            {
+                StartCoroutine(updateTotalScoreAndUI());
+                StartCoroutine(waitForHighscoreScene());
+            }
+        }
+        else
+        {
+            StartCoroutine(updateTotalScoreAndUI());
+            StartCoroutine(waitForHighscoreScene());
+        }
+    }
+
+
+    IEnumerator reloadLevel() // wait for x seconds and then load highscore scene
+    {
+
+        yield return new WaitForSeconds(5); // wait for x seconds
+
+        Application.LoadLevel(GM.currentscene); // reload current level
+        
     }
 
 

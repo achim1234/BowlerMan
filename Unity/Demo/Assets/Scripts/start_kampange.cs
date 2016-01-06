@@ -16,6 +16,7 @@ public class start_kampange : MonoBehaviour {
     {
         SoundManager.instance.PlaySingle("stop_music");
         GM.SetGameMode(GameMode.Campaign); // no single game -> campaing through all levels
+        GM.SetLives(3);
         Application.LoadLevel("achims_level_2");
     }
 }

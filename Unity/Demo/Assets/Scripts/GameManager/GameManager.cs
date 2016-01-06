@@ -18,6 +18,7 @@ public class GameManager
     public GameState gameState { get; private set; }
     public GameMode gameMode { get; private set; }
     public int totalscore { get; set; }
+    public int lives { get; set; }
     public string currentscene { get; set; }
 
 
@@ -66,6 +67,11 @@ public class GameManager
     public void resetTotalScore()
     {
         this.totalscore = 0;
+    }
+
+    public void SetLives(int lives)
+    {
+        this.lives += lives;
     }
 
     public void SetCurrentSceneName(string scene)

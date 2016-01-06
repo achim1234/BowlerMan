@@ -5,7 +5,6 @@ public class script_lives : MonoBehaviour {
 
     public int lives = 3;
 
-    bool changed = false;
 
     GameObject RawImage1;
     GameObject RawImage2;
