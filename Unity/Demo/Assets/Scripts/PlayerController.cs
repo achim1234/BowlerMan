@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject uiLives;
 
+    //bool switch if time is lower then 10sec to play count-down sound once.
+    bool ten_sec_left;
+
+
     void Start ()
     {
         // game manager stuff - set state + scene name
@@ -114,7 +118,10 @@ public class PlayerController : MonoBehaviour {
         {
             timer = timerMax;
         }
-       
+
+
+
+        ten_sec_left = true;
 
         StartCoroutine(startCountDown()); // start countdown
     }
@@ -231,10 +238,15 @@ public class PlayerController : MonoBehaviour {
                 if (GM.gameState == GameState.GamePaused)
                 {
                     resumeGame();
+                    SoundManager.instance.PlaySingle("start_music");
+
                 }
                 else // pausiere Spiel
                 {
                     pauseGame();
+                    SoundManager.instance.PlaySingle("pause_music");
+                    
+
                 }
 
             }
@@ -786,6 +798,16 @@ public class PlayerController : MonoBehaviour {
         gotPointsUIText.CrossFadeAlpha(0.0f, 1.35f, false); // fade to transparent over 1350ms.
     }
 
+    /************ Ten Seconds Left *********/
+    
+    void play_ten_seconds_left_sound()
+    {
+        SoundManager.instance.PlaySingle("ten_sec_left");
+        ten_sec_left = false;
+    }
+
+
+
 
 
     void setUITimer() // UI time
@@ -796,7 +818,13 @@ public class PlayerController : MonoBehaviour {
             timer -= Time.deltaTime;
             if (timer < 10)
             {
+                
                 timerUIText.color = Color.red;
+                
+                if(ten_sec_left == true)
+                {
+                    play_ten_seconds_left_sound();
+                }
 
                 if (timer >= 1)
                 {

@@ -4,7 +4,7 @@ using System.Collections;
 public class SoundManager : MonoBehaviour {
 
     public AudioSource efxSource;                           //Drag a reference to the audio source which will play the sound effects.
-    //public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
+   // public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
 
 
     public AudioClip woohoo;                      //Bei klick auf Bowlerman
@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviour {
     public AudioClip hit_one_pin;                  //Sound bei Pin treffer
     public AudioClip power_up;                      //Sound der bei einsammeln eines Power Up abgespielt wird
     public AudioClip obstical_hit;                 // Hinderniss berührt
+    public AudioClip ten_sec_left;                 //Zehn sekunden verbleiben noch
 
 
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
@@ -74,11 +75,16 @@ public class SoundManager : MonoBehaviour {
                 efxSource.Play();
                 Debug.Log("hiiiiiiiiiiiiiiiit");
                 break;
-            /*
-            case "stop_music":
-                this.musicSource.Stop();
+            case "ten_sec_left":
+                efxSource.clip = ten_sec_left;
+                efxSource.Play();
                 break;
-                */
+            case "pause_music":
+                efxSource.Pause();
+                break;
+            case "start_music":
+                efxSource.Play();
+                break;
             default:
                 Debug.Log("Default");
                 break;
