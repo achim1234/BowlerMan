@@ -106,12 +106,12 @@ public class PlayerController : MonoBehaviour {
         }
         else if (GM.currentscene == "achims_level_2")
         {
-	        timerMax = 200.0f;
+	        timerMax = 55.0f;
 	        timer = timerMax;
         }
         else if (GM.currentscene == "werners_level_2")
         {
-            timerMax = 60.0f;
+            timerMax = 55.0f;
             timer = timerMax;
         }
         else
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    public Camera _camera;
+   
 
     // is ran before performing any physics calculation
     void FixedUpdate()
@@ -816,15 +816,14 @@ public class PlayerController : MonoBehaviour {
         {
             // Zeit wird erst gestartet sobald das Spiel begonnen wurde
             timer -= Time.deltaTime;
-            if (timer < 10)
+            if (timer <= 10)
             {
-                
-                timerUIText.color = Color.red;
-                
-                if(ten_sec_left == true)
+                if (ten_sec_left == true)
                 {
                     play_ten_seconds_left_sound();
                 }
+
+                timerUIText.color = Color.red;      
 
                 if (timer >= 1)
                 {

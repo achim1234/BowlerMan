@@ -5582,10 +5582,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 175510087}
-  - 82: {fileID: 175510086}
   - 82: {fileID: 175510085}
   - 114: {fileID: 175510084}
   - 81: {fileID: 175510083}
+  - 82: {fileID: 175510086}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -5611,14 +5611,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3ae81f6c269d44993ec5741f031fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efxSource: {fileID: 175510086}
+  efxSource: {fileID: 175510085}
+  ten_sec_countdown: {fileID: 175510086}
+  _camera: {fileID: 1784200561}
   woohoo: {fileID: 8300000, guid: 0dc5172b9545ce74d844856a144b58f3, type: 3}
   game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
   hit_one_pin: {fileID: 8300000, guid: 7f802b11d3e8fc64eb3e2feeb25dc8c3, type: 3}
   power_up: {fileID: 8300000, guid: 24654ccfcf1fb77418ae6e76d509cca1, type: 3}
   obstical_hit: {fileID: 8300000, guid: b608c34d3008eec4496f1d8b3b231842, type: 3}
-  ten_sec_left: {fileID: 0}
+  ten_sec_left: {fileID: 8300000, guid: c09cabe487a3dac4682accc587d5ade9, type: 3}
 --- !u!82 &175510085
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5629,7 +5631,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5698,11 +5700,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 84131311ad5d448498160ac44f3667b1, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: .850000024
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -45586,7 +45588,7 @@ Prefab:
       objectReference: {fileID: 1039117402}
     - target: {fileID: 8196754, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2712876d2b421b468958995232c91a8, type: 2}
@@ -54568,7 +54570,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1784200553}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84131311ad5d448498160ac44f3667b1, type: 3}

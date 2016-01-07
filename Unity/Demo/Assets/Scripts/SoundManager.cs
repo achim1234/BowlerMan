@@ -4,8 +4,9 @@ using System.Collections;
 public class SoundManager : MonoBehaviour {
 
     public AudioSource efxSource;                           //Drag a reference to the audio source which will play the sound effects.
-   // public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
-
+                                                            // public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
+    public AudioSource ten_sec_countdown;
+    public Camera _camera;
 
     public AudioClip woohoo;                      //Bei klick auf Bowlerman
     public AudioClip game_won;                    //Spiel gewonnen
@@ -18,6 +19,7 @@ public class SoundManager : MonoBehaviour {
 
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
  
+   
 
 
     void Awake()
@@ -54,8 +56,8 @@ public class SoundManager : MonoBehaviour {
                 break;
 
             case "game_won":
-                efxSource.clip = game_won;
-                efxSource.Play();
+                ten_sec_countdown.clip = game_won;
+                ten_sec_countdown.Play();
                 break;
 
             case "game_lose":
@@ -76,14 +78,16 @@ public class SoundManager : MonoBehaviour {
                 Debug.Log("hiiiiiiiiiiiiiiiit");
                 break;
             case "ten_sec_left":
-                efxSource.clip = ten_sec_left;
-                efxSource.Play();
+                ten_sec_countdown.clip = ten_sec_left;
+                ten_sec_countdown.Play();
                 break;
             case "pause_music":
-                efxSource.Pause();
+                //efxSource.Pause();
+                _camera.GetComponent<AudioSource>().Pause();
                 break;
             case "start_music":
-                efxSource.Play();
+                //efxSource.Play();
+                _camera.GetComponent<AudioSource>().Play();
                 break;
             default:
                 Debug.Log("Default");

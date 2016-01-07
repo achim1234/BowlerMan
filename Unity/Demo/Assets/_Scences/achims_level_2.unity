@@ -3397,6 +3397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   efxSource: {fileID: 379075492}
+  ten_sec_countdown: {fileID: 379075491}
+  _camera: {fileID: 1452381550}
   woohoo: {fileID: 8300000, guid: 0dc5172b9545ce74d844856a144b58f3, type: 3}
   game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
@@ -3414,7 +3416,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3483,11 +3485,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1ea6c877c7959cf45ac64d1e4a401413, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -12009,7 +12011,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8196754, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9294386, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_Enabled
@@ -12086,12 +12088,12 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1452381545}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 84131311ad5d448498160ac44f3667b1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1ea6c877c7959cf45ac64d1e4a401413, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .790000021
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12170,6 +12172,11 @@ MonoBehaviour:
   ContrastAmount: 1
   BlurFactor: 0
   CarInfo: {fileID: 0}
+--- !u!20 &1452381550 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2032320, guid: d2712876d2b421b468958995232c91a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1452381544}
 --- !u!1 &1453144303
 GameObject:
   m_ObjectHideFlags: 0
