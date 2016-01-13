@@ -11704,7 +11704,7 @@ Transform:
   - {fileID: 1600893301}
   - {fileID: 1147599705}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &311399600 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 131920, guid: 8a23a06107e96134598493163a37174f, type: 2}
@@ -37541,10 +37541,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1039117402 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 181646, guid: fbba5a78058940549ab663fd2cd9c645, type: 2}
-  m_PrefabInternal: {fileID: 743796664}
 --- !u!1 &1039852437 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 131920, guid: 8a23a06107e96134598493163a37174f, type: 2}
@@ -54406,7 +54402,7 @@ Prefab:
     - target: {fileID: 11416426, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1039117402}
+      objectReference: {fileID: 1408079013}
     - target: {fileID: 8196754, guid: d2712876d2b421b468958995232c91a8, type: 2}
       propertyPath: m_Enabled
       value: 1
