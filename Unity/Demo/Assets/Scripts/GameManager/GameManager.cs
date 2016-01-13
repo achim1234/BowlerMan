@@ -71,7 +71,15 @@ public class GameManager
 
     public void SetLives(int lives)
     {
-        this.lives += lives;
+        this.lives = lives;
+    }
+
+    public void AddLives(int lives)
+    {
+        if (this.lives <= 2)
+        {
+            this.lives += lives;
+        }
     }
 
     public void SetCurrentSceneName(string scene)

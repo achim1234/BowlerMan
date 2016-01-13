@@ -441,7 +441,7 @@ public class PlayerController : MonoBehaviour {
                     SoundManager.instance.PlaySingle("power_up");
                     if(GM.lives < 3)
                     {
-                        GM.SetLives (GM.lives + 1);
+                        GM.AddLives (1);
                     }
                     // disable pick / power up
                     other.gameObject.SetActive(false);
