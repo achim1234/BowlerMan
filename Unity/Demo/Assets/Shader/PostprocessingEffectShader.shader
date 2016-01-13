@@ -60,15 +60,18 @@
 
 
 				// http://armedunity.com/topic/5539-vignette-shader-optimized/
+			/*
 				float2 dist = (i.uv - 0.5f) * 1.25f;
 				dist.x = 1 - dot(dist, dist)  * _VignetteAmount;
 				renderTex *= dist.x;
-				/*
-				float dist = (i.uv - 0.5f) * 1.25f;
-				dist.x = 1 - dot(dist, dist)  * _RedVignetteAmount;
-				renderTex *= dist.x;
 				*/
-				/*
+			
+				float2 dist = (i.uv - 0.5f) * 1.25f;
+				dist.x = 1 - dot(dist, dist)  *  _RedVignetteAmount * 0.5f;
+				renderTex.gb *= dist.x;
+				
+			
+			/*
 				renderTex += tex2D(_MainTex, i.uv + 0.001);
 				renderTex += tex2D(_MainTex, i.uv + 0.003);
 				//renderTex += tex2D(_MainTex, i.uv + 0.005);

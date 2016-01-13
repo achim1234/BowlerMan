@@ -55,12 +55,12 @@ public class PlayerController : MonoBehaviour {
     public Text countdownUIText;
     public Text winTotalScoreUIText;
     public Text gotPointsUIText;
+    public Text gotPowerUpUIText;
 
     public Button button_spiel_beenden;
     public Button button_spiel_fortsetzen;
 
     public Image myPanel;
-    float fadeTime = 5f;
     Color colorToFadeTo;
 
     public GameObject uiLives;
@@ -89,7 +89,9 @@ public class PlayerController : MonoBehaviour {
         winUIText.text = "";
         setUpButtons();
         gotPointsUIText.gameObject.SetActive(false);
+        gotPowerUpUIText.gameObject.SetActive(false);
         PostprocessingEffectScript.VignetteAmount = 0f;
+        PostprocessingEffectScript.RedVignetteAmount = 0f;
 
         colorToFadeTo = new Color(1f, 1f, 1f, 0f);
         myPanel.CrossFadeColor(colorToFadeTo, 0.0f, true, true);
@@ -101,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         // set time for specific level
         if (GM.currentscene == "daniels_level")
         {
-            timerMax = 50.0f;
+            timerMax = 60.0f;
             timer = timerMax;
         }
         else if (GM.currentscene == "achims_level_2")
@@ -390,6 +392,7 @@ public class PlayerController : MonoBehaviour {
                     // disable pick / power up
                     other.gameObject.SetActive(false);
                     SoundManager.instance.PlaySingle("power_up");
+                    getPowerUpUI("sized up!"); // show power up property to player
                     break;
                 case "PowerUp-KleineKugel": // decrease size of player
                     if ((currentSize.x >= 0.5f) && (currentSize.y >= 0.5f) && (currentSize.z >= 0.5f)) // has player already reached smallest size
@@ -399,6 +402,7 @@ public class PlayerController : MonoBehaviour {
                     // disable pick / power up
                     other.gameObject.SetActive(false);
                     SoundManager.instance.PlaySingle("power_up");
+                    getPowerUpUI("small size!"); // show power up property to player
                     break;
                 case "PowerUp-InvertControl": // invert control
                     SoundManager.instance.PlaySingle("power_up");
@@ -418,6 +422,7 @@ public class PlayerController : MonoBehaviour {
                     speedMultiplier += 1.3f;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
+                    getPowerUpUI("more speed!"); // show power up property to player
                     break;
                 case "PowerUp-AddMass": // increase mass of player
                     SoundManager.instance.PlaySingle("power_up");
@@ -430,12 +435,14 @@ public class PlayerController : MonoBehaviour {
                     playerJump = true;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
+                    getPowerUpUI("jump!"); // show power up property to player
                     break;
                 case "PowerUp-Time": // add extra time
                     SoundManager.instance.PlaySingle("power_up");
                     timer += 10;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
+                    getPowerUpUI("added extra time!"); // show power up property to player
                     break;
                 case "PowerUp-Life": // add extra life
                     SoundManager.instance.PlaySingle("power_up");
@@ -445,6 +452,7 @@ public class PlayerController : MonoBehaviour {
                     }
                     // disable pick / power up
                     other.gameObject.SetActive(false);
+                    getPowerUpUI("1 more live!"); // show power up property to player
                     break;
                 case "Water": // player hits water
                     setGameOver();
@@ -775,9 +783,10 @@ public class PlayerController : MonoBehaviour {
     {
         if (damageVignetteIsSet)
         {
-            if (PostprocessingEffectScript.VignetteAmount >= 0.015f)
+            Debug.Log("vignette if");
+            if (PostprocessingEffectScript.RedVignetteAmount >= 0.015f)
             {
-                PostprocessingEffectScript.VignetteAmount -= 0.015f; // slightly remove vignette on each update / frame
+                PostprocessingEffectScript.RedVignetteAmount -= 0.015f; // slightly remove vignette on each update / frame
             }
             else
             {
@@ -786,7 +795,8 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            PostprocessingEffectScript.VignetteAmount = 1;
+            Debug.Log("vignette else");
+            PostprocessingEffectScript.RedVignetteAmount = 1;
             damageVignetteIsSet = true;
         }
     }
@@ -798,8 +808,18 @@ public class PlayerController : MonoBehaviour {
         gotPointsUIText.CrossFadeAlpha(0.0f, 1.35f, false); // fade to transparent over 1350ms.
     }
 
+
+    void getPowerUpUI(string powerUpText)
+    {
+        gotPowerUpUIText.gameObject.SetActive(true);
+        gotPowerUpUIText.text = powerUpText;
+        gotPowerUpUIText.CrossFadeAlpha(1.0f, 0.03f, false); // fade in
+        gotPowerUpUIText.CrossFadeAlpha(0.0f, 2.35f, false); // fade to transparent over 1350ms.
+    }
+
+
     /************ Ten Seconds Left *********/
-    
+
     void play_ten_seconds_left_sound()
     {
         SoundManager.instance.PlaySingle("ten_sec_left");
