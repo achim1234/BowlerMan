@@ -25425,12 +25425,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   efxSource: {fileID: 804521010}
+  ten_sec_countdown: {fileID: 0}
+  _camera: {fileID: 0}
   woohoo: {fileID: 8300000, guid: 0dc5172b9545ce74d844856a144b58f3, type: 3}
   game_won: {fileID: 8300000, guid: 25f51370e9cc82e41a4d164a243dfaa1, type: 3}
   game_lose: {fileID: 8300000, guid: 1cddd8e193d717c47bc7e705ca74928c, type: 3}
   hit_one_pin: {fileID: 8300000, guid: 7f802b11d3e8fc64eb3e2feeb25dc8c3, type: 3}
   power_up: {fileID: 8300000, guid: 24654ccfcf1fb77418ae6e76d509cca1, type: 3}
   obstical_hit: {fileID: 8300000, guid: b608c34d3008eec4496f1d8b3b231842, type: 3}
+  ten_sec_left: {fileID: 0}
 --- !u!82 &804521010
 AudioSource:
   m_ObjectHideFlags: 0
@@ -54466,7 +54469,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1731235595
 Transform:
   m_ObjectHideFlags: 0
