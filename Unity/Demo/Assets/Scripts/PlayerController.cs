@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
         // set time for specific level
         if (GM.currentscene == "daniels_level")
         {
-            timerMax = 55.0f;
+            timerMax = 50.0f;
             timer = timerMax;
         }
         else if (GM.currentscene == "achims_level_2")
@@ -862,7 +862,7 @@ public class PlayerController : MonoBehaviour {
 
                 if (timer >= 1)
                 {
-                    PostprocessingEffectScript.VignetteAmount = 1 / timer;
+                    PostprocessingEffectScript.VignetteAmount = (1 / timer) * 1.85f;
                 }
             }
         }

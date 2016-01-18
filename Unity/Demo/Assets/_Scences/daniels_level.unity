@@ -17634,6 +17634,10 @@ Prefab:
       propertyPath: m_TagString
       value: CubeObstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 110526, guid: 7cc33e2eed19fb2459b6682e22ae99f0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cc33e2eed19fb2459b6682e22ae99f0, type: 2}
   m_IsPrefabParent: 0
