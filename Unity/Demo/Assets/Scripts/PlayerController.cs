@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour {
         gotPowerUpUIText.gameObject.SetActive(false);
         PostprocessingEffectScript.VignetteAmount = 0f;
         PostprocessingEffectScript.RedVignetteAmount = 0f;
+        PostprocessingEffectScript.BlurFactor = 0f;
 
         colorToFadeTo = new Color(1f, 1f, 1f, 0f);
         myPanel.CrossFadeColor(colorToFadeTo, 0.0f, true, true);
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour {
         // set time for specific level
         if (GM.currentscene == "daniels_level")
         {
-            timerMax = 60.0f;
+            timerMax = 55.0f;
             timer = timerMax;
         }
         else if (GM.currentscene == "achims_level_2")
@@ -261,6 +262,20 @@ public class PlayerController : MonoBehaviour {
             plyayerSpeed = (transform.position - lastPosition).magnitude / Time.deltaTime;
             lastPosition = transform.position;
 
+            //Debug.Log("player speed: " + plyayerSpeed);
+            if (plyayerSpeed > 25 && plyayerSpeed < 35)
+            {
+                PostprocessingEffectScript.BlurFactor = 0.85f;
+            }
+            else if (plyayerSpeed >= 35)
+            {
+                PostprocessingEffectScript.BlurFactor = 1;
+            }
+            else
+            {
+                PostprocessingEffectScript.BlurFactor = 0;
+            }
+
             // is player allowed to stop / be really slowly
             if (noPlayerStop)
             {
@@ -315,7 +330,7 @@ public class PlayerController : MonoBehaviour {
 
             if (healthPoints > 0 && (collision.gameObject.tag == "CubeObstacle") || collision.gameObject.tag == "Fire")
             {
-                healthPoints = healthPoints - 10; // calc new health points
+                healthPoints = healthPoints - 15; // calc new health points
 
                 setUIHealth(); // update UI health text
 
@@ -402,7 +417,7 @@ public class PlayerController : MonoBehaviour {
                     // disable pick / power up
                     other.gameObject.SetActive(false);
                     SoundManager.instance.PlaySingle("power_up");
-                    getPowerUpUI("small size!"); // show power up property to player
+                    getPowerUpUI("sized down!"); // show power up property to player
                     break;
                 case "PowerUp-InvertControl": // invert control
                     SoundManager.instance.PlaySingle("power_up");
@@ -783,7 +798,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (damageVignetteIsSet)
         {
-            Debug.Log("vignette if");
+            //Debug.Log("vignette if");
             if (PostprocessingEffectScript.RedVignetteAmount >= 0.015f)
             {
                 PostprocessingEffectScript.RedVignetteAmount -= 0.015f; // slightly remove vignette on each update / frame
@@ -795,7 +810,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            Debug.Log("vignette else");
+            //Debug.Log("vignette else");
             PostprocessingEffectScript.RedVignetteAmount = 1;
             damageVignetteIsSet = true;
         }

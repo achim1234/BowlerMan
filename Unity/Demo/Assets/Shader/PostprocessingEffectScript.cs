@@ -26,7 +26,7 @@ public class PostprocessingEffectScript : MonoBehaviour
 
 	[Header("Values for Blur Effect")]
 	[Range(0,0.2f)]
-	public float BlurFactor = 0f;
+	public static float BlurFactor = 0f;
 	public CarInformation CarInfo;
 
 

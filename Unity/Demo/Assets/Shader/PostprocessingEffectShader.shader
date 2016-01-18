@@ -60,34 +60,44 @@
 
 
 				// http://armedunity.com/topic/5539-vignette-shader-optimized/
-			/*
+				/*
 				float2 dist = (i.uv - 0.5f) * 1.25f;
 				dist.x = 1 - dot(dist, dist)  * _VignetteAmount;
 				renderTex *= dist.x;
 				*/
-			
-				float2 dist = (i.uv - 0.5f) * 1.25f;
-				dist.x = 1 - dot(dist, dist)  *  _RedVignetteAmount * 0.5f;
-				renderTex.gb *= dist.x;
 				
-			
-			/*
-				renderTex += tex2D(_MainTex, i.uv + 0.001);
-				renderTex += tex2D(_MainTex, i.uv + 0.003);
-				//renderTex += tex2D(_MainTex, i.uv + 0.005);
-				//renderTex += tex2D(_MainTex, i.uv + 0.007);
-				//renderTex += tex2D(_MainTex, i.uv + 0.009);
-				//renderTex += tex2D(_MainTex, i.uv + 0.011);
+				float2 dist = (i.uv - 0.5f) * 1.25f;
+				//dist.x = 1 - dot(dist, dist)  *  _RedVignetteAmount * 0.5f;
+				dist.x = 1 - dot(dist, dist)  *  _RedVignetteAmount;
+				renderTex.gb *= dist.x;
+				//renderTex *= dist.x;
+				
 
-				renderTex += tex2D(_MainTex, i.uv - 0.001);
-				renderTex += tex2D(_MainTex, i.uv - 0.003);
-				//renderTex += tex2D(_MainTex, i.uv - 0.005);
-				//renderTex += tex2D(_MainTex, i.uv - 0.007);
-				//renderTex += tex2D(_MainTex, i.uv - 0.009);
-				//renderTex += tex2D(_MainTex, i.uv - 0.011);
-				//renderTex.rgb = float3((renderTex.r + renderTex.g + renderTex.b) / 3.0);
-				//renderTex = renderTex / 4.5;
-				*/
+
+				if (_BlurFactor >= 0.8 && _BlurFactor < 0.9) {
+					renderTex += tex2D(_MainTex, i.uv + 0.000085);
+					//renderTex += tex2D(_MainTex, i.uv + 0.003);
+					//renderTex += tex2D(_MainTex, i.uv + 0.005);
+
+					renderTex += tex2D(_MainTex, i.uv - 0.000085);
+					//renderTex += tex2D(_MainTex, i.uv - 0.003);
+					//renderTex += tex2D(_MainTex, i.uv - 0.005);
+
+					renderTex = renderTex / 3.25;
+				}
+
+				if (_BlurFactor >= 0.9) {
+					renderTex += tex2D(_MainTex, i.uv + 0.00055);
+					//renderTex += tex2D(_MainTex, i.uv + 0.003);
+					//renderTex += tex2D(_MainTex, i.uv + 0.005);
+
+					renderTex += tex2D(_MainTex, i.uv - 0.00055);
+					//renderTex += tex2D(_MainTex, i.uv - 0.003);
+					//renderTex += tex2D(_MainTex, i.uv - 0.005);
+					renderTex = renderTex / 3.25;
+				}
+
+				
 
 				return renderTex;
 			}
