@@ -9,6 +9,7 @@ public class level : MonoBehaviour {
 
     Vector3 target;
     public GameObject objekt;
+	public GameObject objekt2;
 
     public bool mausklick = false;
 
@@ -19,23 +20,39 @@ public class level : MonoBehaviour {
     public GameObject level3_locked;
 
 
+	private float duration = 2.5f;
+	private float t = 0f;
+
+
     void FixedUpdate()
     {
         if (mausklick)
         {
-            objekt.transform.position = Vector3.Lerp(objekt.transform.position, target, speed * Time.deltaTime);
+			objekt2.GetComponent<BoxCollider>().enabled = false;
+			objekt.transform.position = Vector3.Lerp(objekt.transform.position, target, t);
+			if(t<1.0f)
+			{
+				t+= Time.deltaTime /duration;
+			}
+			if(Mathf.Approximately(objekt.transform.position.z, target.z))
+			{
+				mausklick = false;
+				t = 0.0f;
+				objekt2.GetComponent<BoxCollider>().enabled = true;
+			}
+
         }
     }
 
 
-    void OnCollisionEnter(Collision col)
-    {
-        if(col.gameObject.name == "target_wall_left")
-        {
-            
-            mausklick = false;
-        }
-    }
+//    void OnCollisionEnter(Collision col)
+//    {
+//        if(col.gameObject.name == "target_wall_left")
+//        {
+//            
+//            mausklick = false;
+//        }
+//    }
 
 
     void Start()
@@ -73,10 +90,11 @@ public class level : MonoBehaviour {
 
     void OnMouseUp()
     {
-        target = objekt.transform.position + new Vector3(0, 0, verschiebung_z);
+        this.target = objekt.transform.position + new Vector3(0, 0, verschiebung_z);
         mausklick = true;
 
     }
+
 
     /*
     void OnMouseUp()

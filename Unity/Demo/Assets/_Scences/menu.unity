@@ -8028,6 +8028,7 @@ MonoBehaviour:
   speed: 2
   verschiebung_z: 88
   objekt: {fileID: 675757594}
+  objekt2: {fileID: 1240934795}
   mausklick: 0
   level2: {fileID: 278966388}
   level2_locked: {fileID: 870031489}
@@ -39566,6 +39567,7 @@ MonoBehaviour:
   speed: 2
   verschiebung_z: -88
   objekt: {fileID: 675757594}
+  objekt2: {fileID: 262227286}
   mausklick: 0
   level2: {fileID: 278966388}
   level2_locked: {fileID: 870031489}
