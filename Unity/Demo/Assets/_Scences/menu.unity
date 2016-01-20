@@ -27569,7 +27569,6 @@ GameObject:
   - 23: {fileID: 870031495}
   - 65: {fileID: 870031494}
   - 114: {fileID: 870031493}
-  - 114: {fileID: 870031492}
   - 114: {fileID: 870031491}
   m_Layer: 0
   m_Name: level_2_locked
@@ -27607,18 +27606,6 @@ MonoBehaviour:
   textur: {fileID: 2800000, guid: 51b73a9a333370649ae76d1607897139, type: 3}
   currenttextur: {fileID: 2800000, guid: e6d99e06c12cf74488e3bd09e3e9f598, type: 3}
   objekt: {fileID: 1475870757}
---- !u!114 &870031492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11462616, guid: 09f81029bbd420c4a86e329093b92688,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 870031489}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3664584c17a6d7438c38ee6d84a0cc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &870031493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49562,7 +49549,6 @@ GameObject:
   - 23: {fileID: 1554701257}
   - 65: {fileID: 1554701256}
   - 114: {fileID: 1554701255}
-  - 114: {fileID: 1554701254}
   - 114: {fileID: 1554701253}
   m_Layer: 0
   m_Name: level_3_locked
@@ -49600,18 +49586,6 @@ MonoBehaviour:
   textur: {fileID: 2800000, guid: 4f64d335c6daef44badd0017420155b2, type: 3}
   currenttextur: {fileID: 2800000, guid: e6d99e06c12cf74488e3bd09e3e9f598, type: 3}
   objekt: {fileID: 1475870757}
---- !u!114 &1554701254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11476172, guid: 14132b0eab1efa444a283805a52bdf5f,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1554701251}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 014792e4e02ecce49af05f1b6946fac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1554701255
 MonoBehaviour:
   m_ObjectHideFlags: 0
