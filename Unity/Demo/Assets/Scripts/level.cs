@@ -14,7 +14,9 @@ public class level : MonoBehaviour {
 
 
     public GameObject level2;
+    public GameObject level2_locked;
     public GameObject level3;
+    public GameObject level3_locked;
 
 
     void FixedUpdate()
@@ -45,20 +47,24 @@ public class level : MonoBehaviour {
         if (PlayerPrefs.GetInt("unlocked_level_2")  == 1)
         {
             level2.SetActive(true);
+            level2_locked.SetActive(false);
         }
         else
         {
             level2.SetActive(false);
+            level2_locked.SetActive(true);
         }
 
         // verify if level 2 is unlocked
         if (PlayerPrefs.GetInt("unlocked_level_3") == 1)
         {
             level3.SetActive(true);
+            level3_locked.SetActive(false);
         }
         else
         {
             level3.SetActive(false);
+            level3_locked.SetActive(true);
         }
 
 
