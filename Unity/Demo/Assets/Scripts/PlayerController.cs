@@ -145,21 +145,26 @@ public class PlayerController : MonoBehaviour {
         }
         else // game is over
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            /* 
+			// load menu
+			if (Input.GetKeyDown(KeyCode.Space))
             {
 				Debug.Log("load level menu");
 				Application.LoadLevel("menu");
             }
+            */
         }
 
-
+		// update UI timer
         setUITimer();
 
+		// update red vignette
         if (damageVignetteIsSet)
         {
             setUIDamageVignette();
         }
 
+		// update lives in GUI
         if(GM.gameMode == GameMode.Campaign)
         {
             if (!blinky_lives)
@@ -216,14 +221,6 @@ public class PlayerController : MonoBehaviour {
                 scoreAnimationDone = true;
             }
         }
-
-        /*
-        // reset slighty red vignette
-        if(PostprocessingEffectScript.RedVignetteAmount > 0)
-        {
-            PostprocessingEffectScript.RedVignetteAmount -= 0.01f;
-        }
-        */
     }
 
 
