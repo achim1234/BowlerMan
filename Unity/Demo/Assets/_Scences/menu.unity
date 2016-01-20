@@ -8030,9 +8030,9 @@ MonoBehaviour:
   objekt: {fileID: 675757594}
   mausklick: 0
   level2: {fileID: 278966388}
-  level2_locked: {fileID: 0}
+  level2_locked: {fileID: 870031489}
   level3: {fileID: 835812498}
-  level3_locked: {fileID: 0}
+  level3_locked: {fileID: 1554701251}
 --- !u!1 &265999528
 GameObject:
   m_ObjectHideFlags: 0
