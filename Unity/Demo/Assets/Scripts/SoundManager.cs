@@ -3,23 +3,20 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
-    public AudioSource efxSource;                           //Drag a reference to the audio source which will play the sound effects.
-                                                            // public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
+    public AudioSource efxSource; //Drag a reference to the audio source which will play the sound effects.
+
     public AudioSource ten_sec_countdown;
     public Camera _camera;
 
-    public AudioClip woohoo;                      //Bei klick auf Bowlerman
-    public AudioClip game_won;                    //Spiel gewonnen
-    public AudioClip game_lose;                   //Spiel verlohren
-    public AudioClip hit_one_pin;                  //Sound bei Pin treffer
-    public AudioClip power_up;                      //Sound der bei einsammeln eines Power Up abgespielt wird
-    public AudioClip obstical_hit;                 // Hinderniss berührt
-    public AudioClip ten_sec_left;                 //Zehn sekunden verbleiben noch
+    public AudioClip woohoo; //Bei klick auf Bowlerman
+    public AudioClip game_won; //Spiel gewonnen
+    public AudioClip game_lose; //Spiel verlohren
+    public AudioClip hit_one_pin; //Sound bei Pin treffer
+    public AudioClip power_up; //Sound der bei einsammeln eines Power Up abgespielt wird
+    public AudioClip obstical_hit; // Hinderniss berührt
+    public AudioClip ten_sec_left; //Zehn sekunden verbleiben noch
 
-
-    public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
- 
-   
+    public static SoundManager instance = null; //Allows other scripts to call functions from SoundManager.               
 
 
     void Awake()
@@ -46,20 +43,16 @@ public class SoundManager : MonoBehaviour {
     //Used to play single sound clips.
     public void PlaySingle(string soundevent)
     {
-
         switch (soundevent)
         {
             case "woohoo_sound":
-                //Debug.Log("case tritt ein");
                 efxSource.clip = woohoo;
                 efxSource.Play();
                 break;
-
             case "game_won":
                 ten_sec_countdown.clip = game_won;
                 ten_sec_countdown.Play();
                 break;
-
             case "game_lose":
                 efxSource.clip = game_lose;
                 efxSource.Play();
@@ -75,7 +68,6 @@ public class SoundManager : MonoBehaviour {
             case "obstical_hit":
                 efxSource.clip = obstical_hit;
                 efxSource.Play();
-                Debug.Log("hiiiiiiiiiiiiiiiit");
                 break;
             case "ten_sec_left":
                 ten_sec_countdown.clip = ten_sec_left;

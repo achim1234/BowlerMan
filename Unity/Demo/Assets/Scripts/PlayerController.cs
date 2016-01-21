@@ -143,17 +143,6 @@ public class PlayerController : MonoBehaviour {
 				setGameOver();
             }
         }
-        else // game is over
-        {
-            /* 
-			// load menu
-			if (Input.GetKeyDown(KeyCode.Space))
-            {
-				Debug.Log("load level menu");
-				Application.LoadLevel("menu");
-            }
-            */
-        }
 
 		// update UI timer
         setUITimer();
@@ -203,24 +192,41 @@ public class PlayerController : MonoBehaviour {
 
 
 
-        // Spiel ist zu Ende - Spieler moechte Punkteanimation ueberspringen
+
+        // Spiel / Level ist zu Ende - Spieler moechte Punkteanimation ueberspringen
         if (GM.gameState == GameState.FinishedLevel || GM.gameState == GameState.GameOver)
         {
-            // Pause bei druecken von 'Escape' (ausser waehrend Countdown)
+            // ueberspringen mit Escap / Return
             if (Input.GetKey(KeyCode.Escape) || (Input.GetKey(KeyCode.Return)))
             {
                 Debug.Log("pressed keys while game over / finished");
-                if (GM.gameState == GameState.GameOver)
+                // Game mode campaing
+                if (GM.gameMode == GameMode.Campaign)
+                {
+                    if (GM.lives >= 1)
+                    {
+                        if (GM.gameState == GameState.GameOver)
+                        {
+                            StartCoroutine(instantReloadLevel()); // player still has lives - reload level
+                        }
+                        else if (GM.gameState == GameState.FinishedLevel)
+                        {
+                            StartCoroutine(loadNextLevel()); // player still has lives - load next level
+                        }
+                    }
+                    else // player has no more lives - load highscore
+                    {
+                        StartCoroutine(waitForHighscoreScene());
+                    }
+                }
+                // Game mode single game
+                else if (GM.gameMode == GameMode.SingleGame)
                 {
                     StartCoroutine(waitForHighscoreScene());
                 }
-                if(GM.gameState == GameState.FinishedLevel)
-                {
-                    StartCoroutine(loadNextLevel());
-                }
-                scoreAnimationDone = true;
+                scoreAnimationDone = true; // waiting loop gets canceled
             }
-        }
+        }        
     }
 
 
@@ -239,16 +245,12 @@ public class PlayerController : MonoBehaviour {
                 {
                     resumeGame();
                     SoundManager.instance.PlaySingle("start_music");
-
                 }
                 else // pausiere Spiel
                 {
                     pauseGame();
                     SoundManager.instance.PlaySingle("pause_music");
-                    
-
                 }
-
             }
 
             // get player input
@@ -264,7 +266,7 @@ public class PlayerController : MonoBehaviour {
             {
                 PostprocessingEffectScript.BlurFactor = 0.85f;
             }
-            else if (plyayerSpeed >= 35)
+            else if (plyayerSpeed >= 40)
             {
                 PostprocessingEffectScript.BlurFactor = 1;
             }
@@ -350,8 +352,6 @@ public class PlayerController : MonoBehaviour {
         {
             if (collision.gameObject.ToString().Contains("lava"))
             {
-                Debug.Log("collision object " + collision.gameObject.ToString());
-
                 // change gravity to let player sink slowly in lava
                 Physics.gravity = new Vector3(0, -0.51f, 0);
 
@@ -454,7 +454,7 @@ public class PlayerController : MonoBehaviour {
                     timer += 10;
                     // disable pick / power up
                     other.gameObject.SetActive(false);
-                    getPowerUpUI("added extra time!"); // show power up property to player
+                    getPowerUpUI("extra time!"); // show power up property to player
                     break;
                 case "PowerUp-Life": // add extra life
                     SoundManager.instance.PlaySingle("power_up");
@@ -469,11 +469,10 @@ public class PlayerController : MonoBehaviour {
                 case "Water": // player hits water
                     setGameOver();
                     break;
-                case "Fire":
-
+                case "Fire": // player hits fire
                     if (healthPoints > 0)
                     {
-                        healthPoints = healthPoints - 10; // calc new health points
+                        healthPoints = healthPoints - 20; // calc new health points
 
                         setUIHealth(); // update UI health text
 
@@ -482,7 +481,6 @@ public class PlayerController : MonoBehaviour {
 
                         SoundManager.instance.PlaySingle("obstical_hit");
                         Debug.Log("Health: " + healthPoints);
-
                     }
                     else if (healthPoints <= 0.0f) // no more health -> game over
                     {
@@ -548,7 +546,7 @@ public class PlayerController : MonoBehaviour {
         {
             PlayerPrefs.SetInt("unlocked_level_2", 1);
         }
-        else if (GM.currentscene == "werners_level")
+        else if (GM.currentscene == "werners_level_2")
         {
             PlayerPrefs.SetInt("unlocked_level_3", 1);
         }
@@ -641,11 +639,16 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator reloadLevel() // wait for x seconds and then load highscore scene
     {
+        yield return new WaitForSeconds(7); // wait for x seconds
 
-        yield return new WaitForSeconds(8); // wait for x seconds
+        Application.LoadLevel(GM.currentscene); // reload current level        
+    }
 
-        Application.LoadLevel(GM.currentscene); // reload current level
-        
+    IEnumerator instantReloadLevel() // wait for x seconds and then load highscore scene
+    {
+        yield return new WaitForSeconds(1); // wait for x seconds
+
+        Application.LoadLevel(GM.currentscene); // reload current level        
     }
 
 
@@ -714,7 +717,6 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 winUIText.text = "Well done! \n\n Score: " + (level_score - i).ToString();
-
             }
             countUIText.text = "Score: " + (level_score - i).ToString();
             yield return new WaitForSeconds(0.015f); // wait for x seconds
@@ -773,7 +775,7 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("waitForHighscoreScene while");
             yield return new WaitForSeconds(2); // wait for x seconds
         }
-        yield return new WaitForSeconds(3); // wait for x seconds
+        yield return new WaitForSeconds(2); // wait for x seconds
 
         GM.SetTotalScore(count); // update total score in game manager
 
@@ -795,7 +797,6 @@ public class PlayerController : MonoBehaviour {
     {
         if (damageVignetteIsSet)
         {
-            //Debug.Log("vignette if");
             if (PostprocessingEffectScript.RedVignetteAmount >= 0.015f)
             {
                 PostprocessingEffectScript.RedVignetteAmount -= 0.015f; // slightly remove vignette on each update / frame
@@ -807,7 +808,6 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            //Debug.Log("vignette else");
             PostprocessingEffectScript.RedVignetteAmount = 1;
             damageVignetteIsSet = true;
         }
@@ -868,7 +868,6 @@ public class PlayerController : MonoBehaviour {
 
     void setUIHealth() // UI health
     {
-        //int health = (int)((healthPoints / 50) * 100);
         if(healthPoints <= 10f)
         {
             healthUIText.color = Color.red;
@@ -922,7 +921,6 @@ public class PlayerController : MonoBehaviour {
     void resumeGame()
     {
         GM.SetGameState(GameState.Game); // set game state to 'Game'
-        Debug.Log("spiel geht weiter");
 
         rb.rotation = player_rotation; // set player rotation of values before pause
         rb.angularVelocity = player_angular_velocity; // set player angular velocity of values before pause
@@ -933,13 +931,11 @@ public class PlayerController : MonoBehaviour {
         myPanel.CrossFadeColor(colorToFadeTo, 0.30f, true, true);
         disableButtonSpielFortsetzen();
         disableButtonSpielBeenden();
-
     }
 
     void pauseGame()
     {
         GM.SetGameState(GameState.GamePaused); // set game state to 'Game Paused'
-        Debug.Log("show menu");
         
         player_rotation = rb.rotation; // save current rotation of palyer
         player_angular_velocity = rb.angularVelocity; // save angular velocity rotation of palyer
@@ -976,6 +972,5 @@ public class PlayerController : MonoBehaviour {
         button_spiel_beenden.interactable = false;
         button_spiel_beenden.gameObject.SetActive(false);
     }
-
 
 }

@@ -45,16 +45,6 @@ public class level : MonoBehaviour {
     }
 
 
-//    void OnCollisionEnter(Collision col)
-//    {
-//        if(col.gameObject.name == "target_wall_left")
-//        {
-//            
-//            mausklick = false;
-//        }
-//    }
-
-
     void Start()
     {
         target = objekt.transform.position + new Vector3(0, 0, verschiebung_z);
@@ -92,15 +82,6 @@ public class level : MonoBehaviour {
     {
         this.target = objekt.transform.position + new Vector3(0, 0, verschiebung_z);
         mausklick = true;
-
     }
 
-
-    /*
-    void OnMouseUp()
-    {
-        SoundManager.instance.PlaySingle("stop_music");
-        Application.LoadLevel("daniels_level");
-    } 
-    */
 }
