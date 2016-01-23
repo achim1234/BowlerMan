@@ -883,6 +883,7 @@ public class PlayerController : MonoBehaviour {
     void setUIGameOver() // UI - shows text if game is over
     {
         string text = "Game over! \n\n Score: " + count.ToString();
+        winUIText.color = Color.red;
         winUIText.text = text;
     }
 
@@ -890,6 +891,7 @@ public class PlayerController : MonoBehaviour {
     void setUILevelWinText() // UI - shows text if game is over
     {
         string text = "Well done! \n\n Score: " + count.ToString();
+        winUIText.color = Color.green;
         winUIText.text = text;
     }
 
