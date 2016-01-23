@@ -244,12 +244,10 @@ public class PlayerController : MonoBehaviour {
                 if (GM.gameState == GameState.GamePaused)
                 {
                     resumeGame();
-                    SoundManager.instance.PlaySingle("start_music");
                 }
                 else // pausiere Spiel
                 {
                     pauseGame();
-                    SoundManager.instance.PlaySingle("pause_music");
                 }
             }
 
@@ -931,6 +929,8 @@ public class PlayerController : MonoBehaviour {
         myPanel.CrossFadeColor(colorToFadeTo, 0.30f, true, true);
         disableButtonSpielFortsetzen();
         disableButtonSpielBeenden();
+
+        SoundManager.instance.PlaySingle("start_music");
     }
 
     void pauseGame()
@@ -946,6 +946,8 @@ public class PlayerController : MonoBehaviour {
         myPanel.CrossFadeColor(colorToFadeTo, 0.6f, true, true);
         enableButtonSpielFortsetzen();
         enableButtonSpielBeenden();
+
+        SoundManager.instance.PlaySingle("pause_music");
     }
 
 
