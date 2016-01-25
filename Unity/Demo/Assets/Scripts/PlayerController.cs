@@ -327,7 +327,7 @@ public class PlayerController : MonoBehaviour {
 
             if (healthPoints > 0 && (collision.gameObject.tag == "CubeObstacle") || collision.gameObject.tag == "Fire")
             {
-                healthPoints = healthPoints - 15; // calc new health points
+                healthPoints = healthPoints - 31; // calc new health points
 
                 setUIHealth(); // update UI health text
 
@@ -866,7 +866,7 @@ public class PlayerController : MonoBehaviour {
 
     void setUIHealth() // UI health
     {
-        if(healthPoints <= 10f)
+        if(healthPoints <= 20f)
         {
             healthUIText.color = Color.red;
         }
